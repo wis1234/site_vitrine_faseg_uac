@@ -1,0 +1,1 @@
+<img src="img/bureau.jpg" alt="1ère Cérémonie de sortie des Lauréats des filières d’élite de la FASEG" title="1ère Cérémonie de sortie des Lauréats des filières d’élite de la FASEG" class="responsiveImage">
