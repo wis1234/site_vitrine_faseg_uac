@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FASEG - Université d'Abomey-Calavi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    :root {
+      --primary: #001f3f;
+      --secondary: #007BFF;
+      --accent: #00aced;
+      --light: #f8f9fa;
+      --dark: #333;
+      --success: #28a745;
+      --shadow: 0 4px 15px rgba(0,0,0,0.15);
+      --transition: all 0.3s ease-in-out;
+    }
+    
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Header & Navigation */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      padding: 0.6rem 2rem;
+      background: rgba(0, 31, 63, 0.95);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    nav a:hover {
+      color: var(--accent);
+    }
+    
+    nav a:hover:after, 
+    nav a.active:after {
+      width: 100%;
+    }
+    
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Main Content */
+    main {
+      margin-top: 70px;
+    }
+    
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    
+    section:nth-child(even) {
+      background-color: rgba(0, 31, 63, 0.03);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .section-header:after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background-color: var(--secondary);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: #555;
+      font-size: 1.1rem;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      background: #0056b3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--secondary);
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(0,31,63,0.8) 0%, rgba(0,123,255,0.8) 100%);
+    }
+    
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(33, 34, 35, 0.171);
+
+      /* background: rgba(0, 31, 63, 0.6); */
+      z-index: -1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s both;
+    }
+    
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: rgba(255,255,255,0.9);
+      animation: fadeInUp 1s 0.3s both;
+    }
+    
+    .hero .btn {
+      margin-top: 1rem;
+      animation: fadeIn 1s 0.6s both;
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      color: white;
+      opacity: 0.8;
+    }
+    
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      width: 300px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-size: 1.25rem;
+    }
+    
+    .card p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+      display: block;
+    }
+    
+    /* Team */
+    .team-card {
+      text-align: center;
+      position: relative;
+    }
+    
+    .team-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 5px solid white;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .team-card:hover .team-img {
+      transform: scale(1.05);
+      border-color: var(--secondary);
+    }
+    
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      height: 250px;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 31, 63, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-overlay i {
+      color: white;
+      font-size: 2rem;
+    }
+    
+    /* Counters */
+    .counters {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 5rem 2rem;
+      color: white;
+    }
+    
+    .counter-box {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    
+    .counter-box i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .counter-box h3 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .counter-box p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+    
+    /* Contact Form */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 2rem;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      text-align: left;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-right: 1rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 123, 255, 0.1);
+      border-radius: 50%;
+    }
+    
+    form {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+    
+    button {
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: auto;
+    }
+    
+    button:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 3rem 2rem 1rem;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      gap: 2rem;
+    }
+    
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--secondary);
+    }
+    
+    .footer-column p, .footer-column a {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+    
+    .footer-column a {
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-column a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--secondary);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      nav {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        flex-direction: column;
+        background: var(--primary);
+        align-items: flex-start;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+      
+      nav.active {
+        left: 0;
+      }
+      
+      nav a {
+        margin: 1rem 0;
+        width: 100%;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .counters {
+        padding: 3rem 1rem;
+      }
+      
+      .counter-box h3 {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .hero {
+        height: 80vh;
+      }
+      
+      .hero-content {
+        padding: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .card {
+        width: 100%;
+      }
+      
+      .footer-column {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+ 
+  <main>
+    <section class="hero" id="home">
+      <video autoplay muted loop>
+        <source src="./files/welcome_video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-content">
+        <h1>Bienvenue à la FASEG - UAC</h1>
+        <p>Excellence académique & innovation pédagogique</p>
+        <div>
+          <a href="#about" class="btn">Découvrir</a>
+          <a href="#admissions" class="btn btn-outline">Admission</a>
+        </div>
+      </div>
+      <a href="#about" class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+      </a>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>À propos</h2>
+        </div>
+        <p>La Faculté des Sciences Économiques et de Gestion (FASEG) de l'Université d'Abomey-Calavi est l'une des plus grandes et prestigieuses institutions d'enseignement supérieur du Bénin dans le domaine des sciences économiques et de gestion. Notre mission est de former des professionnels compétents et des chercheurs capables de répondre aux défis économiques actuels et futurs.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <i class="fas fa-graduation-cap card-icon"></i>
+            <h3>Excellence Académique</h3>
+            <p>Des programmes rigoureux et des enseignements de haute qualité pour préparer les étudiants à exceller dans leur domaine.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-users card-icon"></i>
+            <h3>Corps Professoral Qualifié</h3>
+            <p>Des enseignants-chercheurs expérimentés et dévoués au succès des étudiants.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-globe-africa card-icon"></i>
+            <h3>Rayonnement International</h3>
+            <p>Des partenariats internationaux pour offrir une perspective globale aux étudiants.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="departments">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nos Départements</h2>
+        </div>
+        <p>Découvrez nos départements spécialisés qui offrent une formation complète dans les différentes disciplines des sciences économiques et de gestion.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <i class="fas fa-chart-line card-icon"></i>
+            <h3>Techniques Quantitatives et Outils d'Aide à la Décision (TQOAD)</h3>
+            <p>Focus sur les méthodes statistiques et mathématiques pour l'analyse économique.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-landmark card-icon"></i>
+            <h3>Politiques Économiques et Sectorielles (PES)</h3>
+            <p>Analyse et conception des politiques économiques nationales et internationales.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-handshake card-icon"></i>
+            <h3>Financement du Développement et Relations Économiques Internationales (FDREI)</h3>
+            <p>Étude des relations économiques mondiales et stratégies de financement du développement.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-coins card-icon"></i>
+            <h3>Finance, Comptabilité et Contrôle (FCC)</h3>
+            <p>Formation complète en gestion financière, comptabilité et audit.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-lightbulb card-icon"></i>
+            <h3>Marketing, Innovation et Entrepreneuriat (MIE)</h3>
+            <p>Développement des compétences en marketing stratégique et création d'entreprise.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-user-tie card-icon"></i>
+            <h3>Gestion des Ressources Humaines et Développement des Organisations (GRHDO)</h3>
+            <p>Formation en management des ressources humaines et développement organisationnel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formations">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nos Formations</h2>
+        </div>
+        <p>La FASEG propose une large gamme de programmes de licence adaptés aux besoins du marché du travail et aux aspirations des étudiants.</p>
+        
+        <div class="cards" id="formations-container">
+          <!-- Content dynamically loaded via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <div class="section-header">
+          <h2>Actualités</h2>
+        </div>
+        <p>Restez informé des dernières nouvelles et événements de la FASEG.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <span class="badge" style="background: var(--secondary); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Nouveau</span>
+            <h3>Ouverture de 10 nouveaux Masters pour la rentrée 2024-2025</h3>
+            <p>La FASEG enrichit son offre avec dix nouveaux masters professionnels et spécialisés pour répondre aux besoins du marché du travail.</p>
+            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
+          </div>
+          <div class="card">
+            <span class="badge" style="background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Bourses</span>
+            <h3>1479 bacheliers obtiennent des aides universitaires</h3>
+            <p>La FASEG soutient les étudiants dans leur parcours académique en offrant diverses formes d'aides financières pour l'année universitaire 2024-2025.</p>
+            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
+          </div>
+          <div class="card">
+            <span class="badge" style="background: var(--primary); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Événement</span>
+            <h3>Journée Portes Ouvertes - 25 mai 2025</h3>
+            <p>Venez découvrir nos installations, rencontrer nos enseignants et vous renseigner sur nos programmes lors de notre journée portes ouvertes annuelle.</p>
+            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="section-header">
+          <h2>Équipe pédagogique</h2>
+        </div>
+        <p>Notre corps professoral hautement qualifié est dédié à l'excellence en enseignement et en recherche.</p>
+        
+        <div class="cards">
+          <div class="card team-card">
+            <img src="photo-doyen.jpg" alt="Prof Denis O. ACLASSATO" class="team-img">
+            <h3>Prof. Denis O. ACLASSATO </h3>
+            <p>Le Doyen</p>
+            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="card team-card">
+            <img src="photo-doyen.jpg" alt="Dr. Rodrigue AHOUANDJINOU" class="team-img">
+            <h3>Prof. Maxim Jean-claude AGADAME</h3>
+            <p>Le Vice Doyen</p>
+            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="card team-card">
+            <img src="photo-doyen.jpg" alt="Dr. Nathalie GANDJETO" class="team-img">
+            <h3>Prof. Magloire LANHA</h3>
+            <p>Doyen Honoraire</p>
+            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2>Galerie</h2>
+        </div>
+        <p>Découvrez notre campus et la vie étudiante à travers ces images.</p>
+        
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="./files/excursion/04052024-FASEG_174.jpg" alt="Campus FASEG">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="./files/events/lesa.jpeg" alt="Salle de conférence">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="./files/excursion/04052024-FASEG_218.jpg" alt="Bibliothèque">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="./files/excursion/04052024-FASEG_220.jpg" alt="Laboratoire informatique">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="./files/excursion/IMG-20240524-WA0245.jpg" alt="Événement étudiant">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="./files/events/lesa2.jpeg" alt="Cérémonie de remise de diplômes">
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="campus">
+      <div class="container">
+        <div class="section-header">
+          <h2>Vie sur le campus</h2>
+        </div>
+        <p>La FASEG offre un cadre d'études moderne, avec des installations de qualité, des clubs étudiants dynamiques, et un environnement propice à l'apprentissage et à l'épanouissement personnel.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <i class="fas fa-book card-icon"></i>
+            <h3>Bibliothèque</h3>
+            <p>Une bibliothèque moderne avec plus de 20 000 ouvrages et un accès à des ressources numériques.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-laptop card-icon"></i>
+            <h3>Salles Informatiques</h3>
+            <p>Des salles équipées d'ordinateurs modernes et de logiciels spécialisés pour les travaux pratiques.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-users card-icon"></i>
+            <h3>Associations Étudiantes</h3>
+            <p>De nombreuses associations dynamiques pour développer vos compétences et élargir votre réseau.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="counters">
+      <div class="counter-box">
+        <i class="fas fa-user-graduate"></i>
+        <h3 id="students">0</h3>
+        <p>Étudiants inscrits</p>
+      </div>
+      <div class="counter-box">
+        <i class="fas fa-book-open"></i>
+        <h3 id="programs">0</h3>
+        <p>Programmes offerts</p>
+      </div>
+      <div class="counter-box">
+        <i class="fas fa-award"></i>
+        <h3 id="alumni">0</h3>
+        <p>Diplômés</p>
+      </div>
+      <div class="counter-box">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <h3 id="professors">0</h3>
+        <p>Enseignants</p>
+      </div>
+    </section>
+
+    <section id="admissions">
+      <div class="container">
+        <div class="section-header">
+          <h2>Admissions</h2>
+        </div>
+        <p>Pour intégrer la FASEG, consultez les conditions d'admission selon le programme de votre choix. Les inscriptions se font chaque année via la plateforme nationale dédiée.</p>
+        
+        <div class="cards">
+          <div class="card">
+            <i class="fas fa-calendar-alt card-icon"></i>
+            <h3>Calendrier d'admission</h3>
+            <p>Les inscriptions pour l'année académique 2025-2026 seront ouvertes du 15 juin au 15 septembre 2025.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-file-alt card-icon"></i>
+            <h3>Documents requis</h3>
+            <p>Baccalauréat ou équivalent, pièce d'identité, photos d'identité, formulaire d'inscription complété.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-question-circle card-icon"></i>
+            <h3>Questions fréquentes</h3>
+            <p>Consultez notre FAQ pour répondre à vos questions sur le processus d'admission et les exigences.</p>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <a href="https://www.uac.bj" class="btn" target="_blank">Accéder au portail d'admission</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contactez-nous</h2>
+        </div>
+        <p>Nous sommes à votre disposition pour répondre à vos questions et vous fournir toutes les informations nécessaires.</p>
+        
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Adresse</h4>
+                <p>Campus d'Abomey-Calavi, Route de Cotonou-Calavi, Bénin</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Téléphone</h4>
+                <p>+229 21 36 00 74</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>contact@faseg-uac.bj</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Heures d'ouverture</h4>
+                <p>Lundi - Vendredi: 8h00 - 17h00</p>
+              </div>
+            </div>
+            
+            <div class="social-links" style="margin-top: 2rem;">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" placeholder="Votre nom complet" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Adresse email</label>
+              <input type="email" id="email" placeholder="Votre adresse email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <select id="subject" required>
+                <option value="">Sélectionnez un sujet</option>
+                <option value="admission">Renseignements sur les admissions</option>
+                <option value="program">Questions sur les programmes</option>
+                <option value="other">Autre demande</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit">
+              <i class="fas fa-paper-plane"></i>
+              Envoyer
+            </button>
+            <div id="form-status" style="margin-top: 1rem;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Formations data
+    const formations = [
+      {icon: "fas fa-chart-bar", title: "Licence en Économétrie et Statistique Appliquées (LESA)", description: "Techniques statistiques et modélisation économétrique avancée."},
+      {icon: "fas fa-university", title: "Licence en Économie de la Microfinance", description: "Gestion et développement des institutions de microfinance."},
+      {icon: "fas fa-building", title: "Licence en Économie et Finance des Collectivités Locales (EFCL)", description: "Gestion financière des collectivités territoriales."},
+      {icon: "fas fa-chart-line", title: "Licence en Économie Appliquée et Politiques de Développement (EAPD)", description: "Conception et évaluation des politiques économiques."},
+      {icon: "fas fa-leaf", title: "Licence en Économie et Gestion des Exploitations Agricoles (EGEA)", description: "Management des exploitations agricoles et agroalimentaires."},
+      {icon: "fas fa-hospital", title: "Licence en Économie et Gestion des Structures Sanitaires (EGSS)", description: "Administration des établissements de santé."},
+      {icon: "fas fa-project-diagram", title: "Licence en Analyse et Planification des Projets (APP)", description: "Conception, gestion et évaluation de projets de développement."},
+      {icon: "fas fa-calculator", title: "Licence en Sciences et Techniques Comptables et Financières (LSTCF)", description: "Formation aux métiers de la comptabilité."},
+      {icon: "fas fa-search-dollar", title: "Licence en Comptabilité, Audit et Contrôle de Gestion (CACG)", description: "Expertise en audit et contrôle financier."},
+      {icon: "fas fa-money-bill-wave", title: "Licence en Finance, Banque et Assurance (FBA)", description: "Gestion des institutions financières et produits bancaires."},
+      {icon: "fas fa-store", title: "Licence en Entrepreneuriat et Gestion des PME (EGPME)", description: "Création et management de petites et moyennes entreprises."},
+      {icon: "fas fa-user-tie", title: "Licence en Gestion des Ressources Humaines (GRH)", description: "Management du capital humain dans les organisations."},
+      {icon: "fas fa-bullhorn", title: "Licence en Marketing et Stratégie (MKT)", description: "Techniques avancées de marketing et développement commercial."}
+    ];
+    
+    // Populate formations dynamically
+    const formationsContainer = document.getElementById('formations-container');
+    
+    function loadFormations(start, count) {
+      for (let i = start; i < start + count && i < formations.length; i++) {
+        const formation = formations[i];
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <i class="${formation.icon} card-icon"></i>
+          <h3>${formation.title}</h3>
+          <p>${formation.description}</p>
+        `;
+        formationsContainer.appendChild(card);
+      }
+    }
+    
+    // Initial load
+    loadFormations(0, 6);
+    
+    // Load more button functionality
+    if (formations.length > 6) {
+      const loadMoreBtn = document.createElement('button');
+      loadMoreBtn.id = 'load-more';
+      loadMoreBtn.innerHTML = 'Voir plus de formations <i class="fas fa-angle-down"></i>';
+      loadMoreBtn.style.margin = '2rem auto 0';
+      loadMoreBtn.style.display = 'flex';
+      
+      loadMoreBtn.addEventListener('click', function() {
+        const currentCount = document.querySelectorAll('#formations-container .card').length;
+        if (currentCount < formations.length) {
+          loadFormations(currentCount, 6);
+          if (currentCount + 6 >= formations.length) {
+            this.style.display = 'none';
+          }
+        } else {
+          this.style.display = 'none';
+        }
+      });
+      
+      document.querySelector('#formations .container').appendChild(loadMoreBtn);
+    }
+    
+    // Menu toggle
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      document.getElementById("nav").classList.toggle("active");
+      const icon = this.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    
+    // Scroll to sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // Close mobile menu if open
+        document.getElementById("nav").classList.remove("active");
+        const menuIcon = document.querySelector('#menu-toggle i');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+          
+          // Update active link
+          document.querySelectorAll('nav a').forEach(link => {
+            link.classList.remove('active');
+          });
+          this.classList.add('active');
+        }
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Update active menu based on scroll position
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+      
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = '#' + section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Animated counters
+    function animateCounter(id, target, duration = 2000) {
+      const counter = document.getElementById(id);
+      const startTime = performance.now();
+      const startValue = 0;
+      
+      function updateCounter(timestamp) {
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smoother animation
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        
+        const currentValue = Math.floor(startValue + easeOut * (target - startValue));
+        counter.textContent = currentValue.toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      }
+      
+      requestAnimationFrame(updateCounter);
+    }
+    
+    // Intersection Observer for counters
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const counterSection = document.querySelector('.counters');
+    let animated = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animateCounter("students", 8500);
+          animateCounter("programs", 25);
+          animateCounter("alumni", 15000);
+          animateCounter("professors", 120);
+          animated = true;
+        }
+      });
+    }, observerOptions);
+    
+    observer.observe(counterSection);
+    
+    // Form validation and submission
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      if (name && email && subject && message) {
+        // Simulate form submission
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        
+        setTimeout(() => {
+          formStatus.innerHTML = '<div style="color: var(--success); padding: 0.5rem; background: rgba(40, 167, 69, 0.1); border-radius: 5px;"><i class="fas fa-check-circle"></i> Votre message a été envoyé avec succès!</div>';
+          contactForm.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer';
+          
+          setTimeout(() => {
+            formStatus.innerHTML = '';
+          }, 5000);
+        }, 1500);
+      } else {
+        formStatus.innerHTML = '<div style="color: #dc3545; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 5px;"><i class="fas fa-exclamation-circle"></i> Veuillez remplir tous les champs.</div>';
+        
+        setTimeout(() => {
+          formStatus.innerHTML = '';
+        }, 3000);
+      }
+    });
+    
+    // Image gallery lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        const imgAlt = this.querySelector('img').alt;
+        
+        // Create lightbox
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.style.position = 'fixed';
+        lightbox.style.top = '0';
+        lightbox.style.left = '0';
+        lightbox.style.width = '100%';
+        lightbox.style.height = '100%';
+        lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        lightbox.style.display = 'flex';
+        lightbox.style.alignItems = 'center';
+        lightbox.style.justifyContent = 'center';
+        lightbox.style.zIndex = '2000';
+        lightbox.style.padding = '2rem';
+        
+        // Create image
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = imgAlt;
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+        img.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
+        
+        // Create close button
+        const closeBtn = document.createElement('div');
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        closeBtn.style.position = 'absolute';
+        closeBtn.style.top = '20px';
+        closeBtn.style.right = '20px';
+        closeBtn.style.fontSize = '2rem';
+        closeBtn.style.color = 'white';
+        closeBtn.style.cursor = 'pointer';
+        closeBtn.style.width = '50px';
+        closeBtn.style.height = '50px';
+        closeBtn.style.display = 'flex';
+        closeBtn.style.alignItems = 'center';
+        closeBtn.style.justifyContent = 'center';
+        closeBtn.style.borderRadius = '50%';
+        closeBtn.style.background = 'rgba(0, 0, 0, 0.5)';
+        closeBtn.style.transition = 'var(--transition)';
+        
+        closeBtn.addEventListener('mouseover', function() {
+          this.style.background = 'rgba(255, 255, 255, 0.2)';
+        });
+        
+        closeBtn.addEventListener('mouseout', function() {
+          this.style.background = 'rgba(0, 0, 0, 0.5)';
+        });
+        
+        closeBtn.addEventListener('click', function() {
+          lightbox.remove();
+        });
+        
+        // Add caption
+        const caption = document.createElement('div');
+        caption.textContent = imgAlt;
+        caption.style.position = 'absolute';
+        caption.style.bottom = '20px';
+        caption.style.left = '0';
+        caption.style.width = '100%';
+        caption.style.textAlign = 'center';
+        caption.style.color = 'white';
+        caption.style.padding = '1rem';
+        caption.style.background = 'rgba(0, 0, 0, 0.5)';
+        
+        // Append elements
+        lightbox.appendChild(img);
+        lightbox.appendChild(closeBtn);
+        lightbox.appendChild(caption);
+        document.body.appendChild(lightbox);
+        
+        // Close on click outside image
+        lightbox.addEventListener('click', function(e) {
+          if (e.target === lightbox) {
+            lightbox.remove();
+          }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            lightbox.remove();
+          }
+        });
+      });
+    });
+    
+    // Add animation to elements when they come into view
+    const fadeElements = document.querySelectorAll('.card, .section-header, .gallery-item');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s forwards';
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+      element.style.opacity = '0';
+      fadeObserver.observe(element);
+    });
+  </script>
+</body>
+</html>

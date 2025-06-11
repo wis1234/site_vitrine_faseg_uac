@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Départements - FASEG/UAC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #E74C3C;
+            --accent-color: #F39C12;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .landing-page {
+            padding: 2rem 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        } */
+        
+        /* h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        } */
+        
+        .intro-text {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mentions-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .mention-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 550px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .mention-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mention-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+            position: relative;
+        }
+        
+        .mention-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+        
+        .departments-list {
+            padding: 1.5rem;
+        }
+        
+        .department-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .department-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.02);
+        }
+        
+        .department-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .department-item:hover .department-icon {
+            color: white;
+        }
+        
+        .department-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .department-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .note-box {
+            background: #fff8e1;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 8px 8px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(243, 156, 18, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .mentions-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mention-card {
+                width: 100%;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <main class="landing-page">
+        <section class="container">
+            <h1 class="fade-in">Nos Départements</h1>
+            
+            <div class="intro-text fade-in delay-1">
+                <p>Les départements ainsi définis ci-après sont organisés en mentions du « Domaine Sciences Economiques et de Gestion » au sens du LMD-CAMES. Un processus de restructuration des départements est actuellement en cours.</p>
+            </div>
+            
+            <div class="mentions-container">
+                <!-- Mention Sciences Economiques -->
+                <div class="mention-card fade-in delay-1">
+                    <div class="mention-header">
+                        Département Sciences Économiques 
+                    </div>
+                    <div class="departments-list">
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Techniques Quantitatives et Outils d'Aide à la Décision (TQOAD)</h3>
+                                <p>Formation en méthodes quantitatives appliquées à l'économie et à la gestion</p>
+                            </div>
+                        </div>
+                        
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Politiques Économiques et Sectorielles (PES)</h3>
+                                <p>Analyse des politiques publiques et des dynamiques sectorielles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-globe-africa"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Financement du Développement et Relations Économiques Internationales (FDREI)</h3>
+                                <p>Étude des mécanismes de financement et des relations économiques internationales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mention Sciences de Gestion -->
+                <div class="mention-card fade-in delay-2">
+                    <div class="mention-header">
+                        Département des Sciences de Gestion 
+                    </div>
+                    <div class="departments-list">
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Finance, Comptabilité et Contrôle (FCC)</h3>
+                                <p>Formation en gestion financière, comptabilité et contrôle de gestion</p>
+                            </div>
+                        </div>
+                        
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Marketing, Innovation et Entrepreneuriat (MIE)</h3>
+                                <p>Stratégies marketing, innovation et création d'entreprise</p>
+                            </div>
+                        </div>
+                        
+                        <div class="department-item">
+                            <div class="department-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="department-info">
+                                <h3>Gestion des Ressources Humaines et Développement des Organisations (GRHDO)</h3>
+                                <p>Management des RH et transformation organisationnelle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-box fade-in delay-2">
+                <p><strong>Note :</strong> Ces départements entreront en vigueur dès leur validation par les autorités compétentes de l'Université d'Abomey-Calavi.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Observer pour les animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // Éléments à observer
+            const elements = document.querySelectorAll('.mention-card, .intro-text, .note-box');
+            elements.forEach(el => {
+                observer.observe(el);
+                // Retirer d'abord les classes d'animation pour les réappliquer
+                el.classList.remove('fade-in', 'delay-1', 'delay-2');
+            });
+            
+            // Effet de survol amélioré pour les départements
+            const departmentItems = document.querySelectorAll('.department-item');
+            departmentItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        });
+        
+        // Animation pour le titre
+        window.addEventListener('load', function() {
+            const title = document.querySelector('h1');
+            title.style.animation = 'fadeIn 1s ease-in';
+            
+            // Ajout d'un effet de vague pour les icônes
+            const icons = document.querySelectorAll('.department-icon');
+            icons.forEach((icon, index) => {
+                icon.style.animation = `fadeIn 0.5s ease-in ${index * 0.1}s both`;
+            });
+        });
+    </script>
+</body>
+</html>

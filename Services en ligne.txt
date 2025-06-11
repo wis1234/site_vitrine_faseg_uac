@@ -1,0 +1,8 @@
+       <li>
+            <a href="#services">Services en Ligne</a>
+            <ul>
+                <li><a href="#inscription">Inscription</a></li>
+                <li><a href="#diplomes">Authentification Diplômes</a></li>
+                <li><a href="#contact-admin">Contact Administratif</a></li>
+            </ul>
+        </li>
