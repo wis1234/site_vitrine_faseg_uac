@@ -1,1456 +1,3097 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FASEG - Université d'Abomey-Calavi</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <style>
-    :root {
-      --primary: #001f3f;
-      --secondary: #007BFF;
-      --accent: #00aced;
-      --light: #f8f9fa;
-      --dark: #333;
-      --success: #28a745;
-      --shadow: 0 4px 15px rgba(0,0,0,0.15);
-      --transition: all 0.3s ease-in-out;
-    }
-    
-    * {
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    
-    /* Header & Navigation */
-    header {
-      background: var(--primary);
-      color: #fff;
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-    
-    header.scrolled {
-      padding: 0.6rem 2rem;
-      background: rgba(0, 31, 63, 0.95);
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-    
-    .logo img {
-      height: 40px;
-      width: auto;
-    }
-    
-    nav {
-      display: flex;
-      align-items: center;
-    }
-    
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 1rem;
-      padding: 0.5rem 0;
-      position: relative;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    
-    nav a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: var(--accent);
-      transition: var(--transition);
-    }
-    
-    nav a:hover {
-      color: var(--accent);
-    }
-    
-    nav a:hover:after, 
-    nav a.active:after {
-      width: 100%;
-    }
-    
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    /* Main Content */
-    main {
-      margin-top: 70px;
-    }
-    
-    section {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-    
-    section:nth-child(even) {
-      background-color: rgba(0, 31, 63, 0.03);
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .section-header {
-      margin-bottom: 3rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .section-header h2 {
-      margin-bottom: 1rem;
-      font-size: 2.5rem;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    
-    .section-header:after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 3px;
-      background-color: var(--secondary);
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    p {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #555;
-      font-size: 1.1rem;
-    }
-    
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      background: var(--secondary);
-      color: #fff;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-      transition: var(--transition);
-    }
-    
-    .btn:hover {
-      background: #0056b3;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-    }
-    
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--secondary);
-      color: var(--secondary);
-    }
-    
-    .btn-outline:hover {
-      background: var(--secondary);
-      color: white;
-    }
-    
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      color: #fff;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(0,31,63,0.8) 0%, rgba(0,123,255,0.8) 100%);
-    }
-    
-    .hero video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-    
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(33, 34, 35, 0.171);
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FASEG - Université d'Abomey-Calavi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #E74C3C;
+            --accent: #F39C12;
+            --light: #ECF0F1;
+            --dark: #2C3E50;
 
-      /* background: rgba(0, 31, 63, 0.6); */
-      z-index: -1;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      padding: 2rem;
-      z-index: 1;
-    }
-    
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      animation: fadeInDown 1s both;
-    }
-    
-    .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      color: rgba(255,255,255,0.9);
-      animation: fadeInUp 1s 0.3s both;
-    }
-    
-    .hero .btn {
-      margin-top: 1rem;
-      animation: fadeIn 1s 0.6s both;
-    }
-    
-    .scroll-down {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1.5rem;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-      color: white;
-      opacity: 0.8;
-    }
-    
-    /* Cards */
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.8rem;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-    
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: var(--shadow);
-      width: 300px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      text-align: left;
-    }
-    
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 5px;
-      height: 100%;
-      background: var(--secondary);
-      transition: var(--transition);
-    }
-    
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-    
-    .card h3 {
-      margin-bottom: 1rem;
-      color: var(--primary);
-      font-size: 1.25rem;
-    }
-    
-    .card p {
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-    
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: var(--secondary);
-      display: block;
-    }
-    
-    /* Team */
-    .team-card {
-      text-align: center;
-      position: relative;
-    }
-    
-    .team-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 5px solid white;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-    
-    .team-card:hover .team-img {
-      transform: scale(1.05);
-      border-color: var(--secondary);
-    }
-    
-    /* Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      height: 250px;
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    
-    .gallery-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 31, 63, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-    
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-    
-    .gallery-overlay i {
-      color: white;
-      font-size: 2rem;
-    }
-    
-    /* Counters */
-    .counters {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      padding: 5rem 2rem;
-      color: white;
-    }
-    
-    .counter-box {
-      text-align: center;
-      padding: 1.5rem;
-    }
-    
-    .counter-box i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    
-    .counter-box h3 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
-    
-    .counter-box p {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 1.2rem;
-      margin-bottom: 0;
-    }
-    
-    /* Contact Form */
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      align-items: flex-start;
-      margin-top: 2rem;
-    }
-    
-    .contact-info {
-      flex: 1;
-      min-width: 300px;
-      text-align: left;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    
-    .contact-item i {
-      font-size: 1.5rem;
-      color: var(--secondary);
-      margin-right: 1rem;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 123, 255, 0.1);
-      border-radius: 50%;
-    }
-    
-    form {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: var(--shadow);
-      text-align: left;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--primary);
-    }
-    
-    input, textarea, select {
-      width: 100%;
-      padding: 1rem;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      font-family: inherit;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
-    }
-    
-    button {
-      background: var(--primary);
-      color: #fff;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      width: auto;
-    }
-    
-    button:hover {
-      background: var(--secondary);
-      transform: translateY(-3px);
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--primary);
-      color: #fff;
-      padding: 3rem 2rem 1rem;
-    }
-    
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      gap: 2rem;
-    }
-    
-    .footer-column {
-      flex: 1;
-      min-width: 200px;
-    }
-    
-    .footer-column h3 {
-      color: white;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .footer-column h3:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 40px;
-      height: 2px;
-      background: var(--secondary);
-    }
-    
-    .footer-column p, .footer-column a {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
-    }
-    
-    .footer-column a {
-      display: block;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    
-    .footer-column a:hover {
-      color: var(--accent);
-      transform: translateX(5px);
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-    }
-    
-    .social-links a:hover {
-      background: var(--secondary);
-      transform: translateY(-5px);
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-    }
-    
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
-      }
-      40% {
-        transform: translateY(-20px) translateX(-50%);
-      }
-      60% {
-        transform: translateY(-10px) translateX(-50%);
-      }
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .hero p {
-        font-size: 1.2rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        padding: 1rem;
-      }
-      
-      nav {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 80%;
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        background: var(--primary);
-        align-items: flex-start;
-        padding: 2rem;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-      }
-      
-      nav.active {
-        left: 0;
-      }
-      
-      nav a {
-        margin: 1rem 0;
-        width: 100%;
-      }
-      
-      .menu-toggle {
-        display: block;
-      }
-      
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .section-header h2 {
-        font-size: 2rem;
-      }
-      
-      .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      }
-      
-      .counters {
-        padding: 3rem 1rem;
-      }
-      
-      .counter-box h3 {
-        font-size: 2.5rem;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      section {
-        padding: 3rem 1rem;
-      }
-      
-      .hero {
-        height: 80vh;
-      }
-      
-      .hero-content {
-        padding: 1rem;
-      }
-      
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .card {
-        width: 100%;
-      }
-      
-      .footer-column {
-        min-width: 100%;
-      }
-    }
-  </style>
+            /* --primary: #001f3f;
+            --secondary: #007BFF;
+            --accent: #00aced;
+            --light: #f8f9fa;
+            --dark: #333; */
+            --success: #28a745;
+            --shadow: 0 4px 15px rgba(0,0,0,0.15);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease-in-out;
+        }
+
+        
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding-top: 120px; /* Ajusté pour le header */
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            margin-top: -120px; /* Compensation pour le header */
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.9), rgba(0, 0, 0, 0.7));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            padding: 2rem;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: #0056b3;
+            border: 2px solid #0056b3;;
+            color: white;
+            border-radius: 18px;
+            padding: 0.5rem 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: whitesmoke;
+            transform: translateY(-3px);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* News Section Styles */
+        #news {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            overflow: hidden;
+        }
+
+        /* Bande déroulante */
+        .news-ticker {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 0;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 2rem;
+            font-size: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .ticker-item:hover {
+            color: var(--secondary);
+        }
+
+        .ticker-item i {
+            margin-right: 0.5rem;
+            color: var(--secondary);
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .ticker-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-description {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--secondary);
+            animation: 
+                typing 3.5s steps(40, end),
+                blink .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent }
+        }
+
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .news-card:nth-child(1) { animation-delay: 0.2s; }
+        .news-card:nth-child(2) { animation-delay: 0.4s; }
+        .news-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .news-image-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .news-image.secondary {
+            opacity: 0;
+        }
+
+        .news-card:hover .news-image.secondary {
+            opacity: 1;
+        }
+
+        .news-card:hover .news-image.primary {
+            opacity: 0;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover .news-date {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover .news-title::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .news-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .news-card:hover .news-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .news-card:hover .news-link {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .news-link:hover {
+            color: var(--primary);
+            gap: 0.75rem;
+        }
+
+        /* Media Queries pour la section actualités */
+        @media (max-width: 768px) {
+            .news-container {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .news-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .news-ticker {
+                padding: 0.5rem 0;
+            }
+
+            .ticker-item {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Styles pour les nouvelles sections */
+        #events {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .event-date {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .event-month {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .event-day {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-time {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .event-location {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        #resources {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .resources-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .resource-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        #partners {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .partners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .partner-logo {
+            max-width: 150px;
+            height: auto;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .events-container,
+            .resources-container {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-container {
+                gap: 2rem;
+            }
+
+            .partner-logo {
+                max-width: 120px;
+            }
+        }
+
+        /* Gallery Section Styles */
+        #gallery {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1100;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-overlay {
+                padding: 1rem;
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5));
+            }
+
+            .gallery-title {
+                font-size: 1.1rem;
+            }
+
+            .gallery-description {
+                font-size: 0.85rem;
+            }
+
+            .lightbox {
+                padding: 1rem;
+            }
+
+            .lightbox-close {
+                top: -1.5rem;
+                right: -1.5rem;
+                font-size: 1.5rem;
+            }
+
+            .lightbox-nav {
+                padding: 0 1rem;
+            }
+
+            .lightbox-nav button {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Departments Section Styles */
+        .departments {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .departments-category {
+            margin-bottom: 3rem;
+        }
+
+        .departments-category h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 600;
+        }
+
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .department-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .department-header {
+            padding: 1.5rem;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .department-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .department-card:hover .department-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .department-title {
+            flex: 1;
+        }
+
+        .department-title h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .department-title .acronym {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .department-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .department-content p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .department-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .department-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        /* Formations Section Styles */
+        .formations {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .formations-category {
+            margin-bottom: 3rem;
+        }
+
+        .formations-category h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 600;
+        }
+
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .formation-item {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .formation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .formation-image-container {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .formation-image.secondary {
+            opacity: 0;
+        }
+
+        .formation-item:hover .formation-image.primary {
+            opacity: 0;
+        }
+
+        .formation-item:hover .formation-image.secondary {
+            opacity: 1;
+        }
+
+        .formation-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formation-header {
+            margin-bottom: 1rem;
+        }
+
+        .formation-header h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .formation-header .acronym {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .formation-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .formation-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .formation-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .formation-details i {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .departments-grid,
+            .formations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .departments-category h3,
+            .formations-category h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p, 
+        .footer-column a {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Styles pour la section Équipe Pédagogique */
+        .faculty-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faculty-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faculty-image {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+        }
+
+        .faculty-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .faculty-card:hover .faculty-image img {
+            transform: scale(1.1);
+        }
+
+        .faculty-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .faculty-info h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-title {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .faculty-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: var(--gray-600);
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--secondary);
+        }
+
+        /* Styles pour la section Statistiques */
+        .stats-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a365d 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--accent), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .faculty-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Styles pour la galerie */
+        .gallery-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .gallery-load-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .gallery-load-more .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-load-more .btn-outline:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .gallery-load-more .btn-outline i {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-load-more .btn-outline:hover i {
+            transform: translateY(2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
- 
-  <main>
-    <section class="hero" id="home">
-      <video autoplay muted loop>
-        <source src="./files/welcome_video.mp4" type="video/mp4">
-      </video>
-      <div class="hero-content">
-        <h1>Bienvenue à la FASEG - UAC</h1>
-        <p>Excellence académique & innovation pédagogique</p>
-        <div>
-          <a href="#about" class="btn">Découvrir</a>
-          <a href="#admissions" class="btn btn-outline">Admission</a>
-        </div>
-      </div>
-      <a href="#about" class="scroll-down">
-        <i class="fas fa-chevron-down"></i>
-      </a>
-    </section>
+    <!-- Le header sera inclus ici via PHP -->
+    <?php include 'header.html'; ?>
 
-    <section id="about">
-      <div class="container">
-        <div class="section-header">
-          <h2>À propos</h2>
-        </div>
-        <p>La Faculté des Sciences Économiques et de Gestion (FASEG) de l'Université d'Abomey-Calavi est l'une des plus grandes et prestigieuses institutions d'enseignement supérieur du Bénin dans le domaine des sciences économiques et de gestion. Notre mission est de former des professionnels compétents et des chercheurs capables de répondre aux défis économiques actuels et futurs.</p>
-        
-        <div class="cards">
-          <div class="card">
-            <i class="fas fa-graduation-cap card-icon"></i>
-            <h3>Excellence Académique</h3>
-            <p>Des programmes rigoureux et des enseignements de haute qualité pour préparer les étudiants à exceller dans leur domaine.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-users card-icon"></i>
-            <h3>Corps Professoral Qualifié</h3>
-            <p>Des enseignants-chercheurs expérimentés et dévoués au succès des étudiants.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-globe-africa card-icon"></i>
-            <h3>Rayonnement International</h3>
-            <p>Des partenariats internationaux pour offrir une perspective globale aux étudiants.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Le reste du contenu de la page -->
+    <main>
+        <section class="hero" id="home">
+            <video autoplay muted loop>
+                <source src="./files/welcome_video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-content">
+                <h1>Bienvenue à la FASEG</h1>
+                <p>Excellence académique & Innovation pédagogique<br>Formez-vous aux métiers de demain</p>
+                <div class="hero-buttons">
+                    <a href="#formations" class="btn btn-primary">
+                        <i class="fas fa-graduation-cap"></i>
+                        Découvrir nos Formations
+                    </a>
+                    <a href="#admissions" class="btn btn-outline">
+                        <i class="fas fa-user-plus"></i>
+                        S'inscrire
+                    </a>
+                </div>
+            </div>
+        </section>
 
-    <section id="departments">
-      <div class="container">
-        <div class="section-header">
-          <h2>Nos Départements</h2>
-        </div>
-        <p>Découvrez nos départements spécialisés qui offrent une formation complète dans les différentes disciplines des sciences économiques et de gestion.</p>
-        
-        <div class="cards">
-          <div class="card">
-            <i class="fas fa-chart-line card-icon"></i>
-            <h3>Techniques Quantitatives et Outils d'Aide à la Décision (TQOAD)</h3>
-            <p>Focus sur les méthodes statistiques et mathématiques pour l'analyse économique.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-landmark card-icon"></i>
-            <h3>Politiques Économiques et Sectorielles (PES)</h3>
-            <p>Analyse et conception des politiques économiques nationales et internationales.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-handshake card-icon"></i>
-            <h3>Financement du Développement et Relations Économiques Internationales (FDREI)</h3>
-            <p>Étude des relations économiques mondiales et stratégies de financement du développement.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-coins card-icon"></i>
-            <h3>Finance, Comptabilité et Contrôle (FCC)</h3>
-            <p>Formation complète en gestion financière, comptabilité et audit.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-lightbulb card-icon"></i>
-            <h3>Marketing, Innovation et Entrepreneuriat (MIE)</h3>
-            <p>Développement des compétences en marketing stratégique et création d'entreprise.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-user-tie card-icon"></i>
-            <h3>Gestion des Ressources Humaines et Développement des Organisations (GRHDO)</h3>
-            <p>Formation en management des ressources humaines et développement organisationnel.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section id="news">
+            <div class="container">
+                <div class="section-header">
+                    <h2><span class="typing-text">Actualités</span></h2>
+                </div>
 
-    <section id="formations">
-      <div class="container">
-        <div class="section-header">
-          <h2>Nos Formations</h2>
-        </div>
-        <p>La FASEG propose une large gamme de programmes de licence adaptés aux besoins du marché du travail et aux aspirations des étudiants.</p>
-        
-        <div class="cards" id="formations-container">
-          <!-- Content dynamically loaded via JavaScript -->
-        </div>
-      </div>
-    </section>
+                <!-- Bande déroulante -->
+                <div class="news-ticker">
+                    <div class="ticker-wrapper">
+                        <a href="#" class="ticker-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            Inscriptions ouvertes pour l'année académique 2024-2025
+                        </a>
+                        <a href="#" class="ticker-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            Conférence internationale sur le développement économique
+                        </a>
+                        <a href="#" class="ticker-item">
+                            <i class="fas fa-book"></i>
+                            Nouveau programme de master en finance internationale
+                        </a>
+                        <a href="#" class="ticker-item">
+                            <i class="fas fa-flask"></i>
+                            Inauguration du nouveau laboratoire de recherche
+                        </a>
+                        <a href="#" class="ticker-item">
+                            <i class="fas fa-users"></i>
+                            Forum des anciens étudiants de la FASEG
+                        </a>
+                    </div>
+                </div>
 
-    <section id="news">
-      <div class="container">
-        <div class="section-header">
-          <h2>Actualités</h2>
-        </div>
-        <p>Restez informé des dernières nouvelles et événements de la FASEG.</p>
-        
-        <div class="cards">
-          <div class="card">
-            <span class="badge" style="background: var(--secondary); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Nouveau</span>
-            <h3>Ouverture de 10 nouveaux Masters pour la rentrée 2024-2025</h3>
-            <p>La FASEG enrichit son offre avec dix nouveaux masters professionnels et spécialisés pour répondre aux besoins du marché du travail.</p>
-            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
-          </div>
-          <div class="card">
-            <span class="badge" style="background: var(--success); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Bourses</span>
-            <h3>1479 bacheliers obtiennent des aides universitaires</h3>
-            <p>La FASEG soutient les étudiants dans leur parcours académique en offrant diverses formes d'aides financières pour l'année universitaire 2024-2025.</p>
-            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
-          </div>
-          <div class="card">
-            <span class="badge" style="background: var(--primary); color: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; margin-bottom: 1rem; display: inline-block;">Événement</span>
-            <h3>Journée Portes Ouvertes - 25 mai 2025</h3>
-            <p>Venez découvrir nos installations, rencontrer nos enseignants et vous renseigner sur nos programmes lors de notre journée portes ouvertes annuelle.</p>
-            <a href="#" class="btn-outline" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">En savoir plus &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </section>
+                <div class="news-container">
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Actualité 1" class="news-image primary">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Actualité 1 alternative" class="news-image secondary">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">15 Mars 2024</div>
+                            <h3 class="news-title">Inauguration du nouveau laboratoire</h3>
+                            <p class="news-description">La FASEG inaugure son nouveau laboratoire de recherche en économie appliquée, équipé des dernières technologies.</p>
+                            <a href="#" class="news-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
 
-    <section id="team">
-      <div class="container">
-        <div class="section-header">
-          <h2>Équipe pédagogique</h2>
-        </div>
-        <p>Notre corps professoral hautement qualifié est dédié à l'excellence en enseignement et en recherche.</p>
-        
-        <div class="cards">
-          <div class="card team-card">
-            <img src="photo-doyen.jpg" alt="Prof Denis O. ACLASSATO" class="team-img">
-            <h3>Prof. Denis O. ACLASSATO </h3>
-            <p>Le Doyen</p>
-            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-          </div>
-          <div class="card team-card">
-            <img src="photo-doyen.jpg" alt="Dr. Rodrigue AHOUANDJINOU" class="team-img">
-            <h3>Prof. Maxim Jean-claude AGADAME</h3>
-            <p>Le Vice Doyen</p>
-            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-          </div>
-          <div class="card team-card">
-            <img src="photo-doyen.jpg" alt="Dr. Nathalie GANDJETO" class="team-img">
-            <h3>Prof. Magloire LANHA</h3>
-            <p>Doyen Honoraire</p>
-            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fas fa-envelope"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" alt="Actualité 2" class="news-image primary">
+                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800" alt="Actualité 2 alternative" class="news-image secondary">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">10 Mars 2024</div>
+                            <h3 class="news-title">Conférence internationale</h3>
+                            <p class="news-description">Une conférence internationale sur le développement économique se tiendra à la FASEG avec des experts du monde entier.</p>
+                            <a href="#" class="news-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
 
-    <section id="gallery">
-      <div class="container">
-        <div class="section-header">
-          <h2>Galerie</h2>
-        </div>
-        <p>Découvrez notre campus et la vie étudiante à travers ces images.</p>
-        
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="./files/excursion/04052024-FASEG_174.jpg" alt="Campus FASEG">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
+                    <div class="news-card">
+                        <div class="news-image-container">
+                            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800" alt="Actualité 3" class="news-image primary">
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="Actualité 3 alternative" class="news-image secondary">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-date">5 Mars 2024</div>
+                            <h3 class="news-title">Nouveau programme de master</h3>
+                            <p class="news-description">La FASEG lance un nouveau programme de master en finance internationale pour la rentrée 2024.</p>
+                            <a href="#" class="news-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="gallery-item">
-            <img src="./files/events/lesa.jpeg" alt="Salle de conférence">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="./files/excursion/04052024-FASEG_218.jpg" alt="Bibliothèque">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="./files/excursion/04052024-FASEG_220.jpg" alt="Laboratoire informatique">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="./files/excursion/IMG-20240524-WA0245.jpg" alt="Événement étudiant">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="./files/events/lesa2.jpeg" alt="Cérémonie de remise de diplômes">
-            <div class="gallery-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section id="campus">
-      <div class="container">
-        <div class="section-header">
-          <h2>Vie sur le campus</h2>
-        </div>
-        <p>La FASEG offre un cadre d'études moderne, avec des installations de qualité, des clubs étudiants dynamiques, et un environnement propice à l'apprentissage et à l'épanouissement personnel.</p>
-        
-        <div class="cards">
-          <div class="card">
-            <i class="fas fa-book card-icon"></i>
-            <h3>Bibliothèque</h3>
-            <p>Une bibliothèque moderne avec plus de 20 000 ouvrages et un accès à des ressources numériques.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-laptop card-icon"></i>
-            <h3>Salles Informatiques</h3>
-            <p>Des salles équipées d'ordinateurs modernes et de logiciels spécialisés pour les travaux pratiques.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-users card-icon"></i>
-            <h3>Associations Étudiantes</h3>
-            <p>De nombreuses associations dynamiques pour développer vos compétences et élargir votre réseau.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section id="events">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Événements à venir</h2>
+                </div>
+                <p class="section-description">Découvrez les prochains événements organisés par la FASEG.</p>
+                
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="event-month">Juin</div>
+                            <div class="event-day">15</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-time">09:00 - 17:00</div>
+                            <h3 class="event-title">Conférence sur l'Économie Numérique</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Amphithéâtre Idriss Deby Itno</p>
+                            <a href="#" class="btn-outline">Plus d'infos</a>
+                        </div>
+                    </div>
 
-    <section class="counters">
-      <div class="counter-box">
-        <i class="fas fa-user-graduate"></i>
-        <h3 id="students">0</h3>
-        <p>Étudiants inscrits</p>
-      </div>
-      <div class="counter-box">
-        <i class="fas fa-book-open"></i>
-        <h3 id="programs">0</h3>
-        <p>Programmes offerts</p>
-      </div>
-      <div class="counter-box">
-        <i class="fas fa-award"></i>
-        <h3 id="alumni">0</h3>
-        <p>Diplômés</p>
-      </div>
-      <div class="counter-box">
-        <i class="fas fa-chalkboard-teacher"></i>
-        <h3 id="professors">0</h3>
-        <p>Enseignants</p>
-      </div>
-    </section>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="event-month">Juin</div>
+                            <div class="event-day">20</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-time">14:00 - 18:00</div>
+                            <h3 class="event-title">Forum des Métiers</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Hall Principal</p>
+                            <a href="#" class="btn-outline">Plus d'infos</a>
+                        </div>
+                    </div>
 
-    <section id="admissions">
-      <div class="container">
-        <div class="section-header">
-          <h2>Admissions</h2>
-        </div>
-        <p>Pour intégrer la FASEG, consultez les conditions d'admission selon le programme de votre choix. Les inscriptions se font chaque année via la plateforme nationale dédiée.</p>
-        
-        <div class="cards">
-          <div class="card">
-            <i class="fas fa-calendar-alt card-icon"></i>
-            <h3>Calendrier d'admission</h3>
-            <p>Les inscriptions pour l'année académique 2025-2026 seront ouvertes du 15 juin au 15 septembre 2025.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-file-alt card-icon"></i>
-            <h3>Documents requis</h3>
-            <p>Baccalauréat ou équivalent, pièce d'identité, photos d'identité, formulaire d'inscription complété.</p>
-          </div>
-          <div class="card">
-            <i class="fas fa-question-circle card-icon"></i>
-            <h3>Questions fréquentes</h3>
-            <p>Consultez notre FAQ pour répondre à vos questions sur le processus d'admission et les exigences.</p>
-          </div>
-        </div>
-        
-        <div style="margin-top: 2rem;">
-          <a href="https://www.uac.bj" class="btn" target="_blank">Accéder au portail d'admission</a>
-        </div>
-      </div>
-    </section>
+                    <div class="event-card">
+                        <div class="event-date">
+                            <div class="event-month">Juin</div>
+                            <div class="event-day">25</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-time">10:00 - 16:00</div>
+                            <h3 class="event-title">Journée de l'Innovation</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Centre d'Innovation</p>
+                            <a href="#" class="btn-outline">Plus d'infos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2>Contactez-nous</h2>
-        </div>
-        <p>Nous sommes à votre disposition pour répondre à vos questions et vous fournir toutes les informations nécessaires.</p>
+
+        <section id="departments" class="departments">
+            <div class="container">
+                <div class="section-header">
+                    <h2><span class="typing-text">Nos Départements</span></h2>
+                </div>
+                
+                <div class="departments-category">
+                    <h3>Départements d'Économie</h3>
+                    <div class="departments-grid">
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Techniques Quantitatives et Outils d'Aide à la Décision</h4>
+                                    <span class="acronym">TQOAD</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Focus sur les méthodes statistiques et mathématiques pour l'analyse économique.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-globe-americas"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Politiques Économiques et Sectorielles</h4>
+                                    <span class="acronym">PES</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Analyse et conception des politiques économiques nationales et internationales.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Financement du Développement et Relations Économiques Internationales</h4>
+                                    <span class="acronym">FDREI</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Étude des relations économiques mondiales et stratégies de financement du développement.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="departments-category">
+                    <h3>Départements de Gestion</h3>
+                    <div class="departments-grid">
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Finance, Comptabilité et Contrôle</h4>
+                                    <span class="acronym">FCC</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Formation complète en gestion financière, comptabilité et audit.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Marketing, Innovation et Entrepreneuriat</h4>
+                                    <span class="acronym">MIE</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Développement des compétences en marketing stratégique et création d'entreprise.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="department-card">
+                            <div class="department-header">
+                                <div class="department-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="department-title">
+                                    <h4>Gestion des Ressources Humaines et Développement des Organisations</h4>
+                                    <span class="acronym">GRHDO</span>
+                                </div>
+                            </div>
+                            <div class="department-content">
+                                <p>Formation en management des ressources humaines et développement organisationnel.</p>
+                                <a href="#" class="department-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formations" class="formations">
+            <div class="container">
+                <div class="section-header">
+                    <h2><span class="typing-text">Nos Offres de Formation</span></h2>
+                </div>
+                
+                <div class="formations-category">
+                    <h3>Licence Professionnelle en Économie</h3>
+                    <div class="formations-grid">
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Économétrie" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Statistiques" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économétrie et Statistique Appliquées</h4>
+                                    <span class="acronym">LESA</span>
+                                </div>
+                                <p class="formation-description">Techniques statistiques et modélisation économétrique avancée.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Microfinance" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Finance" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économie de la Microfinance</h4>
+                                    <span class="acronym">EMF</span>
+
+                                </div>
+                                <p class="formation-description">Gestion et développement des institutions de microfinance.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800" alt="Collectivités" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Finance locale" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économie et Finance des Collectivités Locales</h4>
+                                    <span class="acronym">EFCL</span>
+                                </div>
+                                <p class="formation-description">Gestion financière des collectivités territoriales.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Développement" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Politiques" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économie Appliquée et Politiques de Développement</h4>
+                                    <span class="acronym">EAPD</span>
+                                </div>
+                                <p class="formation-description">Conception et évaluation des politiques économiques.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Agriculture" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Agroalimentaire" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économie et Gestion des Exploitations Agricoles</h4>
+                                    <span class="acronym">EGEA</span>
+                                </div>
+                                <p class="formation-description">Management des exploitations agricoles et agroalimentaires.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800" alt="Santé" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Gestion" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Économie et Gestion des Structures Sanitaires</h4>
+                                    <span class="acronym">EGSS</span>
+                                </div>
+                                <p class="formation-description">Administration des établissements de santé.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Projets" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Développement" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Analyse et Planification des Projets</h4>
+                                    <span class="acronym">APP</span>
+                                </div>
+                                <p class="formation-description">Conception, gestion et évaluation de projets de développement.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formations-category">
+                    <h3>Licence Professionnelle en  Gestion</h3>
+                    <div class="formations-grid">
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Comptabilité" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Finance" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Sciences et Techniques Comptables et Financières</h4>
+                                    <span class="acronym">LSTCF</span>
+                                </div>
+                                <p class="formation-description">Formation aux métiers de la comptabilité.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800" alt="Audit" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Contrôle" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Comptabilité, Audit et Contrôle de Gestion</h4>
+                                    <span class="acronym">CACG</span>
+                                </div>
+                                <p class="formation-description">Expertise en audit et contrôle financier.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Finance" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Banque" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Finance, Banque et Assurance</h4>
+                                    <span class="acronym">FBA</span>
+                                </div>
+                                <p class="formation-description">Gestion des institutions financières et produits bancaires.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Entrepreneuriat" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="PME" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Entrepreneuriat et Gestion des PME</h4>
+                                    <span class="acronym">EGPME</span>
+                                </div>
+                                <p class="formation-description">Création et management de petites et moyennes entreprises.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800" alt="RH" class="formation-image primary">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800" alt="Management" class="formation-image secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Licence en Gestion des Ressources Humaines</h4>
+                                    <span class="acronym">GRH</span>
+                                </div>
+                                <p class="formation-description">Management du capital humain dans les organisations.</p>
+                                <div class="formation-details">
+                                    <span><i class="fas fa-clock"></i> 3 ans</span>
+                                    <span><i class="fas fa-graduation-cap"></i> Licence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         
-        <div class="contact-container">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Adresse</h4>
-                <p>Campus d'Abomey-Calavi, Route de Cotonou-Calavi, Bénin</p>
-              </div>
+                <!-- Masters en Économie -->
+                <div class="formation-category master-category">
+                    <h3 class="category-title">Masters en Économie</h3>
+                    <div class="formations-grid master-grid">
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MESA" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MESA" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Econométrie et Statistique Appliquée</h4>
+                                    <span class="acronym">MESA</span>
+                                </div>
+                                <p class="formation-description">Analyse quantitative avancée et modélisation économique.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MEPD" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MEPD" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Economie et Politiques de Développement</h4>
+                                    <span class="acronym">MEPD</span>
+                                </div>
+                                <p class="formation-description">Analyse des politiques de développement et stratégies économiques.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MESS" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MESS" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Economie et Systèmes de Santé</h4>
+                                    <span class="acronym">MESS</span>
+                                </div>
+                                <p class="formation-description">Analyse économique des systèmes de santé et politiques sanitaires.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MFQM" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MFQM" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Finance Quantitative et Microfinance</h4>
+                                    <span class="acronym">MFQM</span>
+                                </div>
+                                <p class="formation-description">Finance quantitative et gestion des institutions de microfinance.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Masters en Gestion -->
+                <div class="formation-category master-category">
+                    <h3 class="category-title">Masters en Gestion</h3>
+                    <div class="formations-grid master-grid">
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MSTCF" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MSTCF" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Sciences et Techniques Comptabilité et Financière</h4>
+                                    <span class="acronym">MSTCF</span>
+                                </div>
+                                <p class="formation-description">Expertise comptable et financière avancée.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MCACG" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MCACG" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Comptabilité, Audit et Contrôle de Gestion</h4>
+                                    <span class="acronym">MCACG</span>
+                                </div>
+                                <p class="formation-description">Audit, contrôle et gestion financière.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MFBA" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MFBA" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Finance Banque et Assurance</h4>
+                                    <span class="acronym">MFBA</span>
+                                </div>
+                                <p class="formation-description">Gestion bancaire et assurance.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MGRH" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MGRH" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Gestion des Ressources Humaines</h4>
+                                    <span class="acronym">MGRH</span>
+                                </div>
+                                <p class="formation-description">Management des ressources humaines et développement organisationnel.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formation-item master-item">
+                            <div class="formation-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="MMS" class="formation-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="MMS" class="formation-image-secondary">
+                            </div>
+                            <div class="formation-content">
+                                <div class="formation-header">
+                                    <h4>Master en Marketing et Stratégie</h4>
+                                    <span class="acronym">MMS</span>
+                                </div>
+                                <p class="formation-description">Stratégies marketing et développement commercial.</p>
+                                <div class="formation-details">
+                                    <span class="duration"><i class="far fa-clock"></i> 2 ans</span>
+                                    <span class="degree"><i class="fas fa-graduation-cap"></i> Master</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Téléphone</h4>
-                <p>+229 21 36 00 74</p>
-              </div>
+        </section>
+
+        <style>
+         /* Styles spécifiques pour les masters */
+            .master-category {
+                background: linear-gradient(135deg, var(--primary) 0%, #1a365d 100%);
+                padding: 3rem;
+                border-radius: 16px;
+                margin: 4rem 0;
+            }
+
+            .master-category .category-title {
+                color: white;
+            }
+
+            .master-category .category-title::after {
+                background: var(--accent);
+            }
+
+            .master-item {
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .master-item .formation-header h4 {
+                color: var(--primary);
+            }
+
+            .master-item .acronym {
+                background: var(--accent);
+            }
+
+            @media (max-width: 768px) {
+                .formations-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .master-category {
+                    padding: 2rem;
+                }
+            }
+        </style>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Galerie</h2>
+                    <p class="section-description">Découvrez notre campus et nos installations</p>
+                </div>
+                
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Les 6 premiers éléments seront visibles par défaut -->
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Campus">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Campus</h3>
+                            <p class="gallery-description">Notre campus moderne</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="Bibliothèque">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Bibliothèque</h3>
+                            <p class="gallery-description">Centre de ressources documentaires</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800" alt="Laboratoire">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Laboratoire</h3>
+                            <p class="gallery-description">Équipements de recherche de pointe</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800" alt="Amphithéâtre">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Amphithéâtre</h3>
+                            <p class="gallery-description">Salle de conférence moderne</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Étudiants">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Étudiants</h3>
+                            <p class="gallery-description">Vie étudiante dynamique</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-image="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="Campus">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Campus</h3>
+                            <p class="gallery-description">Notre campus moderne</p>
+                        </div>
+                    </div>
+                    <!-- Éléments supplémentaires (cachés par défaut) -->
+                    <div class="gallery-item hidden" data-image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="Bibliothèque">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Bibliothèque</h3>
+                            <p class="gallery-description">Centre de ressources documentaires</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hidden" data-image="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800" alt="Laboratoire">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Laboratoire</h3>
+                            <p class="gallery-description">Équipements de recherche de pointe</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item hidden" data-image="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800">
+                        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800" alt="Amphithéâtre">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Amphithéâtre</h3>
+                            <p class="gallery-description">Salle de conférence moderne</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-load-more">
+                    <button id="loadMoreBtn" class="btn-outline">
+                        <span class="btn-text">Voir plus</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
             </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>contact@faseg-uac.bj</p>
-              </div>
+
+            <!-- Lightbox -->
+            <div class="lightbox" id="lightbox">
+                <div class="lightbox-content">
+                    <span class="lightbox-close">&times;</span>
+                    <img src="" alt="Image en plein écran">
+                    <div class="lightbox-nav">
+                        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>Heures d'ouverture</h4>
-                <p>Lundi - Vendredi: 8h00 - 17h00</p>
-              </div>
+        </section>
+
+        <style>
+            /* Styles pour la galerie */
+            .gallery-section {
+                padding: 5rem 0;
+                background: var(--light);
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                margin-top: 3rem;
+            }
+
+            .gallery-item {
+                position: relative;
+                border-radius: 12px;
+                overflow: hidden;
+                aspect-ratio: 4/3;
+                cursor: pointer;
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .gallery-item.hidden {
+                display: none;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+                padding: 1.5rem;
+                color: white;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover .gallery-overlay {
+                transform: translateY(0);
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.1);
+            }
+
+            .gallery-title {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .gallery-description {
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+
+            .gallery-load-more {
+                text-align: center;
+                margin-top: 3rem;
+            }
+
+            .gallery-load-more .btn-outline {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 2rem;
+                font-size: 1rem;
+                border-radius: 50px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .gallery-load-more .btn-outline:hover {
+                background: var(--secondary);
+                transform: translateY(-2px);
+            }
+
+            .gallery-load-more .btn-outline i {
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-load-more .btn-outline:hover i {
+                transform: translateY(2px);
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 1024px) {
+                .gallery-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .gallery-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const galleryGrid = document.getElementById('galleryGrid');
+                const loadMoreBtn = document.getElementById('loadMoreBtn');
+                const hiddenItems = document.querySelectorAll('.gallery-item.hidden');
+                let currentIndex = 0;
+                const itemsPerLoad = 6;
+
+                // Fonction pour afficher les éléments suivants
+                function loadMoreItems() {
+                    const itemsToShow = Array.from(hiddenItems).slice(currentIndex, currentIndex + itemsPerLoad);
+                    
+                    if (itemsToShow.length === 0) {
+                        loadMoreBtn.style.display = 'none';
+                        return;
+                    }
+
+                    itemsToShow.forEach(item => {
+                        item.classList.remove('hidden');
+                        item.style.animationDelay = `${currentIndex * 0.1}s`;
+                    });
+
+                    currentIndex += itemsPerLoad;
+
+                    // Cacher le bouton s'il n'y a plus d'éléments à afficher
+                    if (currentIndex >= hiddenItems.length) {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                }
+
+                // Gestionnaire d'événement pour le bouton "Voir plus"
+                loadMoreBtn.addEventListener('click', loadMoreItems);
+
+                // Lightbox
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = lightbox.querySelector('img');
+                const closeBtn = lightbox.querySelector('.lightbox-close');
+                const prevBtn = lightbox.querySelector('.lightbox-prev');
+                const nextBtn = lightbox.querySelector('.lightbox-next');
+                let currentImageIndex = 0;
+                const galleryItems = document.querySelectorAll('.gallery-item');
+
+                function openLightbox(index) {
+                    currentImageIndex = index;
+                    const imgSrc = galleryItems[index].getAttribute('data-image');
+                    lightboxImg.src = imgSrc;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeLightbox() {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+
+                function showPrevImage() {
+                    currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+                    lightboxImg.src = galleryItems[currentImageIndex].getAttribute('data-image');
+                }
+
+                function showNextImage() {
+                    currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+                    lightboxImg.src = galleryItems[currentImageIndex].getAttribute('data-image');
+                }
+
+                // Événements pour la galerie
+                galleryItems.forEach((item, index) => {
+                    item.addEventListener('click', () => openLightbox(index));
+                });
+
+                closeBtn.addEventListener('click', closeLightbox);
+                prevBtn.addEventListener('click', showPrevImage);
+                nextBtn.addEventListener('click', showNextImage);
+
+                // Fermer la lightbox en cliquant en dehors de l'image
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+
+                // Navigation au clavier
+                document.addEventListener('keydown', (e) => {
+                    if (lightbox.style.display === 'flex') {
+                        if (e.key === 'Escape') closeLightbox();
+                        if (e.key === 'ArrowLeft') showPrevImage();
+                        if (e.key === 'ArrowRight') showNextImage();
+                    }
+                });
+            });
+        </script>
+
+        <!-- Section Équipe Pédagogique -->
+        <section id="faculty" class="faculty-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Équipe Pédagogique</h2>
+                    <p class="section-description">Notre corps professoral hautement qualifié est dédié à l'excellence en enseignement et en recherche.</p>
+                </div>
+                
+                <div class="faculty-grid">
+                    <div class="faculty-card">
+                        <div class="faculty-image">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" alt="Prof Denis O. ACLASSATO">
+                        </div>
+                        <div class="faculty-info">
+                            <h3>Prof Denis O. ACLASSATO</h3>
+                            <p class="faculty-title">Le Doyen</p>
+                            <div class="faculty-social">
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="faculty-card">
+                        <div class="faculty-image">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800" alt="Dr. Rodrigue AHOUANDJINOU">
+                        </div>
+                        <div class="faculty-info">
+                            <h3>Dr. Rodrigue AHOUANDJINOU</h3>
+                            <p class="faculty-title">Le Vice Doyen</p>
+                            <div class="faculty-social">
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="faculty-card">
+                        <div class="faculty-image">
+                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=800" alt="Prof. Maxim Jean-claude AGADAME">
+                        </div>
+                        <div class="faculty-info">
+                            <h3>Prof. Maxim Jean-claude AGADAME</h3>
+                            <p class="faculty-title">Le Vice Doyen</p>
+                            <div class="faculty-social">
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="faculty-card">
+                        <div class="faculty-image">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800" alt="Dr. Nathalie GANDJETO">
+                        </div>
+                        <div class="faculty-info">
+                            <h3>Dr. Nathalie GANDJETO</h3>
+                            <p class="faculty-title">Doyen Honoraire</p>
+                            <div class="faculty-social">
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="faculty-card">
+                        <div class="faculty-image">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800" alt="Prof. Magloire LANHA">
+                        </div>
+                        <div class="faculty-info">
+                            <h3>Prof. Magloire LANHA</h3>
+                            <p class="faculty-title">Doyen Honoraire</p>
+                            <div class="faculty-social">
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+
+
+        <!-- section ressources etudiantes -->
+        <section id="resources">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Ressources Étudiantes</h2>
+                </div>
+                <p class="section-description">Accédez à toutes les ressources nécessaires pour votre réussite académique.</p>
+                
+                <div class="resources-container">
+                    <div class="resource-card">
+                        <i class="fas fa-book resource-icon"></i>
+                        <h3 class="resource-title">Bibliothèque</h3>
+                        <p class="resource-description">Accès à plus de 20 000 ouvrages et ressources numériques</p>
+                        <a href="#" class="btn-outline">Accéder</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <i class="fas fa-laptop resource-icon"></i>
+                        <h3 class="resource-title">Plateforme E-learning</h3>
+                        <p class="resource-description">Cours en ligne et ressources pédagogiques</p>
+                        <a href="#" class="btn-outline">Accéder</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <i class="fas fa-calendar-alt resource-icon"></i>
+                        <h3 class="resource-title">Calendrier Académique</h3>
+                        <p class="resource-description">Dates importantes et événements à ne pas manquer</p>
+                        <a href="#" class="btn-outline">Accéder</a>
+                    </div>
+
+                    <div class="resource-card">
+                        <i class="fas fa-file-alt resource-icon"></i>
+                        <h3 class="resource-title">Documents Utiles</h3>
+                        <p class="resource-description">Formulaires et documents administratifs</p>
+                        <a href="#" class="btn-outline">Télécharger</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- Section Statistiques -->
+                <section id="stats" class="stats-section">
+                    <div class="container">
+                        <div class="section-header stat-content">
+                            <h2 style="color: var(--accent)">Nos Statistiques</h2>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" data-count="8500">0</h3>
+                                    <p class="stat-label">Étudiants inscrits</p>
+                                </div>
+                            </div>
+        
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" data-count="25">0</h3>
+                                    <p class="stat-label">Programmes offerts</p>
+                                </div>
+                            </div>
+        
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" data-count="15000">0</h3>
+                                    <p class="stat-label">Diplômés</p>
+                                </div>
+                            </div>
+        
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" data-count="120">0</h3>
+                                    <p class="stat-label">Enseignants</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+        <section id="partners">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nos Partenaires</h2>
+                </div>
+                <p class="section-description">La FASEG collabore avec des institutions prestigieuses pour offrir une formation de qualité.</p>
+                
+                <div class="partners-container">
+                    <img src="https://via.placeholder.com/150x80?text=Partenaire+1" alt="Partenaire 1" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partenaire+2" alt="Partenaire 2" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partenaire+3" alt="Partenaire 3" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partenaire+4" alt="Partenaire 4" class="partner-logo">
+                    <img src="https://via.placeholder.com/150x80?text=Partenaire+5" alt="Partenaire 5" class="partner-logo">
+                </div>
+            </div>
+        </section>
+
+
+        <style>
+            /* Styles pour la section Équipe Pédagogique */
+            .faculty-section {
+                padding: 5rem 0;
+                background: var(--light);
+            }
+
+            .faculty-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .faculty-card {
+                background: white;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .faculty-card:hover {
+                transform: translateY(-10px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .faculty-image {
+                position: relative;
+                padding-top: 100%;
+                overflow: hidden;
+            }
+
+            .faculty-image img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .faculty-card:hover .faculty-image img {
+                transform: scale(1.1);
+            }
+
+            .faculty-info {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .faculty-info h3 {
+                color: var(--primary);
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .faculty-title {
+                color: var(--secondary);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .faculty-social {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .social-link {
+                color: var(--gray-600);
+                transition: color 0.3s ease;
+            }
+
+            .social-link:hover {
+                color: var(--secondary);
+            }
+
+            /* Styles pour la section Statistiques */
+            .stats-section {
+                padding: 5rem 0;
+                background: linear-gradient(135deg, var(--primary) 0%, #1a365d 100%);
+                color: white;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .stat-card {
+                padding: 2rem;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                transition: transform 0.3s ease;
+            }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .stat-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: var(--accent);
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                background: linear-gradient(45deg, var(--accent), #fff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .stat-label {
+                font-size: 1.1rem;
+                opacity: 0.9;
+            }
+
+            @media (max-width: 768px) {
+                .faculty-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                }
+
+                .stats-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .stat-card {
+                    padding: 1.5rem;
+                }
+
+                .stat-number {
+                    font-size: 2rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <script>
+            // Animation des compteurs
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-count'));
+                const duration = 2000; // 2 secondes
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        element.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            }
+
+            // Observer pour déclencher l'animation au scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.stat-number');
+                        counters.forEach(counter => animateCounter(counter));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Observer la section des statistiques
+            document.addEventListener('DOMContentLoaded', () => {
+                const statsSection = document.querySelector('.stats-section');
+                if (statsSection) {
+                    observer.observe(statsSection);
+                }
+            });
+        </script>
+    </main>
+
+    <script>
+        // JavaScript pour la navigation et les animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation active
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Image gallery lightbox
+            const galleryItems = document.querySelectorAll('.gallery-item');
             
-            <div class="social-links" style="margin-top: 2rem;">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-          </div>
-          
-          <form id="contact-form">
-            <div class="form-group">
-              <label for="name">Nom complet</label>
-              <input type="text" id="name" placeholder="Votre nom complet" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Adresse email</label>
-              <input type="email" id="email" placeholder="Votre adresse email" required>
-            </div>
-            <div class="form-group">
-              <label for="subject">Sujet</label>
-              <select id="subject" required>
-                <option value="">Sélectionnez un sujet</option>
-                <option value="admission">Renseignements sur les admissions</option>
-                <option value="program">Questions sur les programmes</option>
-                <option value="other">Autre demande</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="5" placeholder="Votre message..." required></textarea>
-            </div>
-            <button type="submit">
-              <i class="fas fa-paper-plane"></i>
-              Envoyer
-            </button>
-            <div id="form-status" style="margin-top: 1rem;"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const imgAlt = this.querySelector('img').alt;
+                    
+                    // Create lightbox
+                    const lightbox = document.createElement('div');
+                    lightbox.className = 'lightbox';
+                    lightbox.style.position = 'fixed';
+                    lightbox.style.top = '0';
+                    lightbox.style.left = '0';
+                    lightbox.style.width = '100%';
+                    lightbox.style.height = '100%';
+                    lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                    lightbox.style.display = 'flex';
+                    lightbox.style.alignItems = 'center';
+                    lightbox.style.justifyContent = 'center';
+                    lightbox.style.zIndex = '2000';
+                    lightbox.style.padding = '2rem';
+                    
+                    // Create image
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = imgAlt;
+                    img.style.maxWidth = '90%';
+                    img.style.maxHeight = '90%';
+                    img.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
+                    
+                    // Create close button
+                    const closeBtn = document.createElement('div');
+                    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    closeBtn.style.position = 'absolute';
+                    closeBtn.style.top = '20px';
+                    closeBtn.style.right = '20px';
+                    closeBtn.style.fontSize = '2rem';
+                    closeBtn.style.color = 'white';
+                    closeBtn.style.cursor = 'pointer';
+                    closeBtn.style.width = '50px';
+                    closeBtn.style.height = '50px';
+                    closeBtn.style.display = 'flex';
+                    closeBtn.style.alignItems = 'center';
+                    closeBtn.style.justifyContent = 'center';
+                    closeBtn.style.borderRadius = '50%';
+                    closeBtn.style.background = 'rgba(0, 0, 0, 0.5)';
+                    closeBtn.style.transition = 'var(--transition)';
+                    
+                    closeBtn.addEventListener('mouseover', function() {
+                        this.style.background = 'rgba(255, 255, 255, 0.2)';
+                    });
+                    
+                    closeBtn.addEventListener('mouseout', function() {
+                        this.style.background = 'rgba(0, 0, 0, 0.5)';
+                    });
+                    
+                    closeBtn.addEventListener('click', function() {
+                        lightbox.remove();
+                    });
+                    
+                    // Add caption
+                    const caption = document.createElement('div');
+                    caption.textContent = imgAlt;
+                    caption.style.position = 'absolute';
+                    caption.style.bottom = '20px';
+                    caption.style.left = '0';
+                    caption.style.width = '100%';
+                    caption.style.textAlign = 'center';
+                    caption.style.color = 'white';
+                    caption.style.padding = '1rem';
+                    caption.style.background = 'rgba(0, 0, 0, 0.5)';
+                    
+                    // Append elements
+                    lightbox.appendChild(img);
+                    lightbox.appendChild(closeBtn);
+                    lightbox.appendChild(caption);
+                    document.body.appendChild(lightbox);
+                    
+                    // Close on click outside image
+                    lightbox.addEventListener('click', function(e) {
+                        if (e.target === lightbox) {
+                            lightbox.remove();
+                        }
+                    });
+                    
+                    // Close on escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            lightbox.remove();
+                        }
+                    });
+                });
+            });
 
-  <script>
-    // Formations data
-    const formations = [
-      {icon: "fas fa-chart-bar", title: "Licence en Économétrie et Statistique Appliquées (LESA)", description: "Techniques statistiques et modélisation économétrique avancée."},
-      {icon: "fas fa-university", title: "Licence en Économie de la Microfinance", description: "Gestion et développement des institutions de microfinance."},
-      {icon: "fas fa-building", title: "Licence en Économie et Finance des Collectivités Locales (EFCL)", description: "Gestion financière des collectivités territoriales."},
-      {icon: "fas fa-chart-line", title: "Licence en Économie Appliquée et Politiques de Développement (EAPD)", description: "Conception et évaluation des politiques économiques."},
-      {icon: "fas fa-leaf", title: "Licence en Économie et Gestion des Exploitations Agricoles (EGEA)", description: "Management des exploitations agricoles et agroalimentaires."},
-      {icon: "fas fa-hospital", title: "Licence en Économie et Gestion des Structures Sanitaires (EGSS)", description: "Administration des établissements de santé."},
-      {icon: "fas fa-project-diagram", title: "Licence en Analyse et Planification des Projets (APP)", description: "Conception, gestion et évaluation de projets de développement."},
-      {icon: "fas fa-calculator", title: "Licence en Sciences et Techniques Comptables et Financières (LSTCF)", description: "Formation aux métiers de la comptabilité."},
-      {icon: "fas fa-search-dollar", title: "Licence en Comptabilité, Audit et Contrôle de Gestion (CACG)", description: "Expertise en audit et contrôle financier."},
-      {icon: "fas fa-money-bill-wave", title: "Licence en Finance, Banque et Assurance (FBA)", description: "Gestion des institutions financières et produits bancaires."},
-      {icon: "fas fa-store", title: "Licence en Entrepreneuriat et Gestion des PME (EGPME)", description: "Création et management de petites et moyennes entreprises."},
-      {icon: "fas fa-user-tie", title: "Licence en Gestion des Ressources Humaines (GRH)", description: "Management du capital humain dans les organisations."},
-      {icon: "fas fa-bullhorn", title: "Licence en Marketing et Stratégie (MKT)", description: "Techniques avancées de marketing et développement commercial."}
-    ];
-    
-    // Populate formations dynamically
-    const formationsContainer = document.getElementById('formations-container');
-    
-    function loadFormations(start, count) {
-      for (let i = start; i < start + count && i < formations.length; i++) {
-        const formation = formations[i];
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <i class="${formation.icon} card-icon"></i>
-          <h3>${formation.title}</h3>
-          <p>${formation.description}</p>
-        `;
-        formationsContainer.appendChild(card);
-      }
-    }
-    
-    // Initial load
-    loadFormations(0, 6);
-    
-    // Load more button functionality
-    if (formations.length > 6) {
-      const loadMoreBtn = document.createElement('button');
-      loadMoreBtn.id = 'load-more';
-      loadMoreBtn.innerHTML = 'Voir plus de formations <i class="fas fa-angle-down"></i>';
-      loadMoreBtn.style.margin = '2rem auto 0';
-      loadMoreBtn.style.display = 'flex';
-      
-      loadMoreBtn.addEventListener('click', function() {
-        const currentCount = document.querySelectorAll('#formations-container .card').length;
-        if (currentCount < formations.length) {
-          loadFormations(currentCount, 6);
-          if (currentCount + 6 >= formations.length) {
-            this.style.display = 'none';
-          }
-        } else {
-          this.style.display = 'none';
-        }
-      });
-      
-      document.querySelector('#formations .container').appendChild(loadMoreBtn);
-    }
-    
-    // Menu toggle
-    document.getElementById("menu-toggle").addEventListener("click", function () {
-      document.getElementById("nav").classList.toggle("active");
-      const icon = this.querySelector('i');
-      if (icon.classList.contains('fa-bars')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
-    });
-    
-    // Scroll to sections
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        // Close mobile menu if open
-        document.getElementById("nav").classList.remove("active");
-        const menuIcon = document.querySelector('#menu-toggle i');
-        menuIcon.classList.remove('fa-times');
-        menuIcon.classList.add('fa-bars');
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
-          });
-          
-          // Update active link
-          document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-          });
-          this.classList.add('active');
-        }
-      });
-    });
-    
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-      const header = document.getElementById('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      
-      // Update active menu based on scroll position
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('nav a');
-      
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = '#' + section.getAttribute('id');
-        }
-      });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === currentSection) {
-          link.classList.add('active');
-        }
-      });
-    });
-    
-    // Animated counters
-    function animateCounter(id, target, duration = 2000) {
-      const counter = document.getElementById(id);
-      const startTime = performance.now();
-      const startValue = 0;
-      
-      function updateCounter(timestamp) {
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smoother animation
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        
-        const currentValue = Math.floor(startValue + easeOut * (target - startValue));
-        counter.textContent = currentValue.toLocaleString();
-        
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          counter.textContent = target.toLocaleString();
-        }
-      }
-      
-      requestAnimationFrame(updateCounter);
-    }
-    
-    // Intersection Observer for counters
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-    
-    const counterSection = document.querySelector('.counters');
-    let animated = false;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animateCounter("students", 8500);
-          animateCounter("programs", 25);
-          animateCounter("alumni", 15000);
-          animateCounter("professors", 120);
-          animated = true;
-        }
-      });
-    }, observerOptions);
-    
-    observer.observe(counterSection);
-    
-    // Form validation and submission
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-    
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
-      
-      if (name && email && subject && message) {
-        // Simulate form submission
-        const submitBtn = this.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-        
-        setTimeout(() => {
-          formStatus.innerHTML = '<div style="color: var(--success); padding: 0.5rem; background: rgba(40, 167, 69, 0.1); border-radius: 5px;"><i class="fas fa-check-circle"></i> Votre message a été envoyé avec succès!</div>';
-          contactForm.reset();
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer';
-          
-          setTimeout(() => {
-            formStatus.innerHTML = '';
-          }, 5000);
-        }, 1500);
-      } else {
-        formStatus.innerHTML = '<div style="color: #dc3545; padding: 0.5rem; background: rgba(220, 53, 69, 0.1); border-radius: 5px;"><i class="fas fa-exclamation-circle"></i> Veuillez remplir tous les champs.</div>';
-        
-        setTimeout(() => {
-          formStatus.innerHTML = '';
-        }, 3000);
-      }
-    });
-    
-    // Image gallery lightbox
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    galleryItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const imgSrc = this.querySelector('img').src;
-        const imgAlt = this.querySelector('img').alt;
-        
-        // Create lightbox
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox';
-        lightbox.style.position = 'fixed';
-        lightbox.style.top = '0';
-        lightbox.style.left = '0';
-        lightbox.style.width = '100%';
-        lightbox.style.height = '100%';
-        lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-        lightbox.style.display = 'flex';
-        lightbox.style.alignItems = 'center';
-        lightbox.style.justifyContent = 'center';
-        lightbox.style.zIndex = '2000';
-        lightbox.style.padding = '2rem';
-        
-        // Create image
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = imgAlt;
-        img.style.maxWidth = '90%';
-        img.style.maxHeight = '90%';
-        img.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
-        
-        // Create close button
-        const closeBtn = document.createElement('div');
-        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-        closeBtn.style.position = 'absolute';
-        closeBtn.style.top = '20px';
-        closeBtn.style.right = '20px';
-        closeBtn.style.fontSize = '2rem';
-        closeBtn.style.color = 'white';
-        closeBtn.style.cursor = 'pointer';
-        closeBtn.style.width = '50px';
-        closeBtn.style.height = '50px';
-        closeBtn.style.display = 'flex';
-        closeBtn.style.alignItems = 'center';
-        closeBtn.style.justifyContent = 'center';
-        closeBtn.style.borderRadius = '50%';
-        closeBtn.style.background = 'rgba(0, 0, 0, 0.5)';
-        closeBtn.style.transition = 'var(--transition)';
-        
-        closeBtn.addEventListener('mouseover', function() {
-          this.style.background = 'rgba(255, 255, 255, 0.2)';
+            // Carousel functionality
+            function initCarousel(carouselId) {
+                const carousel = document.querySelector(carouselId);
+                const items = carousel.querySelectorAll('.carousel-item');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                const prevBtn = carousel.querySelector('.carousel-prev');
+                const nextBtn = carousel.querySelector('.carousel-next');
+                let currentIndex = 0;
+                let interval;
+
+                function showSlide(index) {
+                    items.forEach(item => item.classList.remove('active'));
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    
+                    items[index].classList.add('active');
+                    dots[index].classList.add('active');
+                    currentIndex = index;
+                }
+
+                function nextSlide() {
+                    let nextIndex = currentIndex + 1;
+                    if (nextIndex >= items.length) nextIndex = 0;
+                    showSlide(nextIndex);
+                }
+
+                function prevSlide() {
+                    let prevIndex = currentIndex - 1;
+                    if (prevIndex < 0) prevIndex = items.length - 1;
+                    showSlide(prevIndex);
+                }
+
+                function startAutoSlide() {
+                    interval = setInterval(nextSlide, 5000);
+                }
+
+                function stopAutoSlide() {
+                    clearInterval(interval);
+                }
+
+                // Event listeners
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    stopAutoSlide();
+                    startAutoSlide();
+                });
+                
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    stopAutoSlide();
+                    startAutoSlide();
+                });
+                
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        showSlide(index);
+                        stopAutoSlide();
+                        startAutoSlide();
+                    });
+                });
+
+                // Pause on hover
+                carousel.addEventListener('mouseenter', stopAutoSlide);
+                carousel.addEventListener('mouseleave', startAutoSlide);
+
+                // Start auto-slide
+                startAutoSlide();
+            }
+
+            // Initialize carousels
+            initCarousel('#departments .carousel');
+            initCarousel('#formations .carousel');
+
+            // Animation du texte progressif
+            const typingText = document.querySelector('.typing-text');
+            if (typingText) {
+                // Réinitialiser l'animation
+                typingText.style.animation = 'none';
+                typingText.offsetHeight; // Force reflow
+                typingText.style.animation = null;
+            }
+
+            // Animation des cartes d'actualités
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const description = this.querySelector('.news-description');
+                    const date = this.querySelector('.news-date');
+                    const link = this.querySelector('.news-link');
+                    
+                    description.style.opacity = '1';
+                    description.style.transform = 'translateY(0)';
+                    
+                    date.style.opacity = '1';
+                    date.style.transform = 'translateY(0)';
+                    
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateX(0)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    const description = this.querySelector('.news-description');
+                    const date = this.querySelector('.news-date');
+                    const link = this.querySelector('.news-link');
+                    
+                    description.style.opacity = '0';
+                    description.style.transform = 'translateY(20px)';
+                    
+                    date.style.opacity = '0';
+                    date.style.transform = 'translateY(10px)';
+                    
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateX(-10px)';
+                });
+            });
+
+            // Animation de la bande déroulante
+            const tickerWrapper = document.querySelector('.ticker-wrapper');
+            if (tickerWrapper) {
+                // Dupliquer le contenu pour une animation continue
+                const content = tickerWrapper.innerHTML;
+                tickerWrapper.innerHTML = content + content;
+            }
+
+            // Gallery Lightbox
+            document.addEventListener('DOMContentLoaded', function() {
+                const galleryItems = document.querySelectorAll('.gallery-item');
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = lightbox.querySelector('img');
+                const lightboxClose = lightbox.querySelector('.lightbox-close');
+                const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+                const lightboxNext = lightbox.querySelector('.lightbox-next');
+                let currentImageIndex = 0;
+
+                // Ouvrir le lightbox
+                galleryItems.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        updateLightboxImage();
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+
+                // Fermer le lightbox
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                // Navigation dans le lightbox
+                lightboxPrev.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+                    updateLightboxImage();
+                });
+
+                lightboxNext.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+                    updateLightboxImage();
+                });
+
+                // Mettre à jour l'image du lightbox
+                function updateLightboxImage() {
+                    const imageUrl = galleryItems[currentImageIndex].dataset.image;
+                    lightboxImg.src = imageUrl;
+                    lightboxImg.alt = galleryItems[currentImageIndex].querySelector('img').alt;
+                }
+
+                // Fermer avec la touche Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                        lightbox.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Navigation avec les flèches du clavier
+                document.addEventListener('keydown', (e) => {
+                    if (!lightbox.classList.contains('active')) return;
+                    
+                    if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+                        updateLightboxImage();
+                    } else if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+                        updateLightboxImage();
+                    }
+                });
+            });
         });
-        
-        closeBtn.addEventListener('mouseout', function() {
-          this.style.background = 'rgba(0, 0, 0, 0.5)';
-        });
-        
-        closeBtn.addEventListener('click', function() {
-          lightbox.remove();
-        });
-        
-        // Add caption
-        const caption = document.createElement('div');
-        caption.textContent = imgAlt;
-        caption.style.position = 'absolute';
-        caption.style.bottom = '20px';
-        caption.style.left = '0';
-        caption.style.width = '100%';
-        caption.style.textAlign = 'center';
-        caption.style.color = 'white';
-        caption.style.padding = '1rem';
-        caption.style.background = 'rgba(0, 0, 0, 0.5)';
-        
-        // Append elements
-        lightbox.appendChild(img);
-        lightbox.appendChild(closeBtn);
-        lightbox.appendChild(caption);
-        document.body.appendChild(lightbox);
-        
-        // Close on click outside image
-        lightbox.addEventListener('click', function(e) {
-          if (e.target === lightbox) {
-            lightbox.remove();
-          }
-        });
-        
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
-            lightbox.remove();
-          }
-        });
-      });
-    });
-    
-    // Add animation to elements when they come into view
-    const fadeElements = document.querySelectorAll('.card, .section-header, .gallery-item');
-    
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s forwards';
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    fadeElements.forEach(element => {
-      element.style.opacity = '0';
-      fadeObserver.observe(element);
-    });
-  </script>
+    </script>
 </body>
-</html>
+</html> 
+</html> 
+</html> 

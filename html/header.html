@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu FASEG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --primary-color: #1e293b;
+            --secondary-color: #3b82f6;
+            --accent-color: #ef4444;
+            --light-color: #f8fafc; */
+            --primary-color: #003366;
+            --secondary-color: #E74C3C;
+            --accent-color: #F39C12;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --white: #ffffff;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --transition-speed: 0.25s;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            padding-top: 120px; /* Réduit grâce à la réorganisation */
+            color: var(--gray-800);
+            background-color: var(--light-color);
+            font-feature-settings: 'liga' 1, 'kern' 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Super Header Section - Optimisé */
+        .super-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #334155 100%);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.875rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .super-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .super-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .super-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .super-header a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all var(--transition-speed) ease;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .super-header a:hover {
+            opacity: 1;
+            color: #93c5fd;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info span:not(:last-child):after {
+            content: "|";
+            margin-left: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-links a {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .login-link .text {
+            display: none;
+        }
+
+        #header {
+            background-color: var(--white);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 40px;
+            z-index: 999;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            position: relative;
+            margin-right: 2rem;
+            z-index: 1001;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #header.scrolled .logo img {
+            height: 50px;
+        }
+
+        #nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.1rem;
+        }
+
+        #nav ul li {
+            position: relative;
+        }
+
+        #nav ul li a {
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            position: relative;
+            letter-spacing: -0.025em;
+        }
+
+        #nav ul li a:hover {
+            color: var(--secondary-color);
+            background-color: var(--gray-100);
+            transform: translateY(-1px);
+        }
+
+        #nav ul li a.active {
+            color: var(--secondary-color);
+            background-color: rgba(59, 130, 246, 0.1);
+            font-weight: 600;
+        }
+
+        #nav ul li a i {
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        #nav ul li:hover a i {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu optimisé */
+        #nav ul li ul {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            background-color: var(--white);
+            min-width: 240px;
+            box-shadow: var(--shadow-xl);
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            padding: 0.5rem;
+            overflow: hidden;
+        }
+
+        #nav ul li:hover > ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        #nav ul li ul::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--white);
+            border: 1px solid var(--gray-200);
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(45deg);
+        }
+
+        #nav ul li ul li {
+            margin: 0;
+            width: 100%;
+        }
+
+        #nav ul li ul li a {
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            border-radius: 8px;
+            margin-bottom: 0.125rem;
+            display: block;
+            color: var(--gray-600);
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #nav ul li ul li a:hover {
+            background-color: var(--gray-100);
+            color: var(--secondary-color);
+            transform: translateX(4px);
+            padding-left: 1.25rem;
+        }
+
+        #nav ul li ul li:last-child a {
+            margin-bottom: 0;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--gray-800);
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
+            z-index: 1002;
+            background: var(--white);
+        }
+
+        .menu-toggle:hover {
+            background-color: var(--gray-100);
+            color: var(--secondary-color);
+        }
+
+        .menu-toggle.active {
+            color: var(--secondary-color);
+            background-color: var(--gray-100);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 1200px) {
+            .super-header-content {
+                padding: 0 1rem;
+            }
+
+            #nav ul li a {
+                padding: 0.75rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .header-content {
+                padding: 0.75rem 1rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                padding-top: 128px;
+            }
+
+            .super-header {
+                z-index: 1000;
+            }
+
+            #header {
+                top: 40px;
+                z-index: 999;
+            }
+
+            .super-header {
+                font-size: 0.8rem;
+                padding: 0.5rem 0;
+            }
+
+            .super-header-content {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .super-header-left,
+            .super-header-right {
+                width: 100%;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                font-size: 0.75rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .contact-info span {
+                white-space: nowrap;
+            }
+
+            .contact-info span:not(:last-child):after {
+                margin-left: 1rem;
+            }
+
+            .social-links {
+                gap: 0.5rem;
+            }
+
+            .social-links a {
+                width: 28px;
+                height: 28px;
+            }
+
+            .login-link {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .login-link .text {
+                display: inline;
+            }
+
+            /* Styles essentiels pour le header responsive */
+            .header-content {
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: block;
+                order: 1;
+                margin-left: auto;
+                position: relative;
+                z-index: 1002;
+            }
+
+            .logo {
+                order: 0;
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0;
+                z-index: 1001;
+            }
+
+            #nav {
+                order: 2;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                background-color: var(--white);
+                border-radius: 12px;
+                margin-top: 1rem;
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--gray-200);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 998;
+            }
+
+            #nav.active {
+                max-height: 80vh;
+                overflow-y: auto;
+                padding: 1rem;
+            }
+
+            #nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            #nav ul li {
+                margin: 0;
+                width: 100%;
+            }
+
+            #nav ul li a {
+                padding: 1rem;
+                border-radius: 8px;
+                justify-content: space-between;
+                font-weight: 500;
+                font-size: 0.95rem;
+            }
+
+            /* Enhanced Mobile Dropdown */
+            #nav ul li ul {
+                position: static;
+                box-shadow: none;
+                border: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 0;
+                margin: 0.5rem 0 0 1rem;
+                background-color: var(--gray-100);
+                border-radius: 8px;
+                border-left: 3px solid var(--secondary-color);
+                min-width: auto;
+            }
+
+            #nav ul li.active > ul {
+                max-height: 400px;
+                padding: 0.5rem;
+            }
+
+            #nav ul li ul li a {
+                padding: 0.75rem 1rem;
+                margin-bottom: 0.125rem;
+                background-color: transparent;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px; /* Réduit car super-header est caché */
+            }
+
+            .super-header {
+                display: none; /* Cache le super header sur mobile */
+            }
+
+            #header {
+                top: 0; /* Ajusté car super-header est caché */
+            }
+
+            .header-content {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .logo img {
+                height: 45px;
+            }
+
+            #nav {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+
+            #nav.active {
+                display: block;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            #nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            #nav ul li {
+                width: 100%;
+            }
+
+            #nav ul li a {
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: var(--gray-100);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            #nav ul li a:hover {
+                background: var(--gray-200);
+            }
+
+            #nav ul li ul {
+                display: none;
+                margin-top: 0.5rem;
+                padding-left: 1rem;
+                border-left: 3px solid var(--secondary-color);
+            }
+
+            #nav ul li.active > ul {
+                display: block;
+            }
+
+            #nav ul li ul li a {
+                background: transparent;
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            #nav ul li ul li a:hover {
+                background: var(--gray-100);
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .menu-toggle i {
+                font-size: 1.5rem;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle.active i {
+                transform: rotate(90deg);
+            }
+
+            /* Afficher l'option Espace Étudiant uniquement sur mobile */
+            #nav ul li.student-portal {
+                display: block;
+            }
+
+            #nav ul li.student-portal a {
+                background: var(--secondary-color);
+                color: white;
+                margin-top: 0.5rem;
+                border-radius: 8px;
+            }
+
+            #nav ul li.student-portal a:hover {
+                background: var(--primary-color);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .super-header {
+                font-size: 0.65rem;
+            }
+
+            .super-header-left {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .super-header-right {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .contact-info {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .contact-info span {
+                font-size: 0.65rem;
+            }
+
+            .social-links a {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7rem;
+            }
+
+            .login-link {
+                font-size: 0.7rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            #nav ul li a {
+                font-size: 0.9rem;
+                padding: 0.875rem;
+            }
+
+            #nav ul li ul li a {
+                font-size: 0.85rem;
+                padding: 0.75rem;
+            }
+
+            /* Ajustements supplémentaires pour très petits écrans */
+            .header-content {
+                padding: 0.5rem;
+            }
+
+            .menu-toggle {
+                padding: 0.4rem;
+                font-size: 1.2rem;
+            }
+
+            #nav {
+                margin-top: 0.75rem;
+                border-radius: 8px;
+            }
+
+            #nav.active {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Add smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add touch-friendly styles for mobile */
+        @media (hover: none) {
+            #nav ul li a:active {
+                background-color: var(--gray-100);
+            }
+
+            #nav ul li ul li a:active {
+                background-color: var(--white);
+            }
+
+            .social-links a:active {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        /* Animation for dropdown items */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #nav ul li ul li {
+            animation: slideInUp 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        #nav ul li ul li:nth-child(1) { animation-delay: 0.05s; }
+        #nav ul li ul li:nth-child(2) { animation-delay: 0.1s; }
+        #nav ul li ul li:nth-child(3) { animation-delay: 0.15s; }
+        #nav ul li ul li:nth-child(4) { animation-delay: 0.2s; }
+        #nav ul li ul li:nth-child(5) { animation-delay: 0.25s; }
+        #nav ul li ul li:nth-child(6) { animation-delay: 0.3s; }
+        #nav ul li ul li:nth-child(7) { animation-delay: 0.35s; }
+
+        /* Hover effects and micro-interactions */
+        #nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--secondary-color), #6366f1);
+            opacity: 0;
+            border-radius: 8px;
+            transition: opacity var(--transition-speed) ease;
+            z-index: -1;
+        }
+
+        #nav ul li a.active::before {
+            opacity: 0.1;
+        }
+
+        /* Focus states for accessibility */
+        #nav ul li a:focus {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        /* Loading animation for logo */
+        .logo img {
+            animation: logoAppear 0.6s ease-out;
+        }
+
+        @keyframes logoAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Style pour l'option Espace Étudiant dans le menu */
+        #nav ul li.student-portal {
+            display: none; /* Caché par défaut sur grand écran */
+        }
+    </style>
+</head>
+<body>
+    <!-- Super Header optimisé -->
+    <div class="super-header">
+        <div class="super-header-content">
+            <div class="super-header-left">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +229 21 36 05 69</span>
+                    <span><i class="fas fa-envelope"></i> info@faseg.uac.bj</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Abomey-Calavi, Bénin</span>
+                </div>
+            </div>
+            <div class="super-header-right">
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <a href="#" class="login-link">
+                    <i class="fas fa-user"></i>
+                    <span class="text_">Espace  Étudiant</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./files/logo-faseg-ro.png" alt="Logo FASEG" />
+            </div>
+
+            <nav id="nav">
+                <ul>
+                    <li><a href="/welcome.php" class="active"> Accueil</a></li>
+
+                    <li>
+                        <a href="#a-propos">A&nbsp;propos <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="mot-du-doyen.php"><i class="fas fa-user-tie"></i> Mot du Doyen</a></li>
+                            <li><a href="#historique"><i class="fas fa-history"></i> Historique</a></li>
+                            <li><a href="#missions"><i class="fas fa-target"></i> Missions</a></li>
+                            <li><a href="#gouvernance"><i class="fas fa-users-cog"></i> Gouvernance</a></li>
+                            <li><a href="departement.php"><i class="fas fa-building"></i> Départements</a></li>
+                            <li><a href="#enseignants"><i class="fas fa-chalkboard-teacher"></i> Enseignants</a></li>
+                            <li><a href="#guide"><i class="fas fa-book"></i> Guide de l'étudiant</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#formations">Formations <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#l-eco"><i class="fas fa-chart-line"></i> Licences - Économie</a></li>
+                            <li><a href="#l-ges"><i class="fas fa-briefcase"></i> Licences - Gestion</a></li>
+                            <li><a href="m-eco.php"><i class="fas fa-graduation-cap"></i> Masters - Économie</a></li>
+                            <li><a href="#m-ges"><i class="fas fa-user-graduate"></i> Masters - Gestion</a></li>
+                            <li><a href="#autres"><i class="fas fa-plus-circle"></i> Autres</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#recherche">Recherche <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="https://www.retanet.org/" target="_blank"><i class="fas fa-journal-whills"></i> Revue RETA</a></li>
+                            <li><a href="#laboratoires"><i class="fas fa-flask"></i> Laboratoires</a></li>
+                            <li><a href="#colloques"><i class="fas fa-comments"></i> Colloques</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#vie-etudiante">Vie&nbsp;Étudiante <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#associations"><i class="fas fa-users"></i> Alumni</a></li>
+                            <li><a href="#activites"><i class="fas fa-calendar-alt"></i> Activités</a></li>
+                            <li><a href="#bourses"><i class="fas fa-handshake"></i> Stages</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#partenariats">Partenariats <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#entreprises"><i class="fas fa-industry"></i> Collaboration avec Entreprises</a></li>
+                            <li><a href="#cooperation"><i class="fas fa-globe"></i> Coopération Internationale</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#insertion">Insertion&nbsp;Professionnelle <i class="fas fa-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="https://www.c3e-uac.bj/" target="_blank"><i class="fas fa-rocket"></i> C3E - UAC</a></li>
+                            <li><a href="https://uacstartupvalley.com/" target="_blank"><i class="fas fa-lightbulb"></i> UAC Startup Valley</a></li>
+                            <li><a href="https://sica.anpe.bj/" target="_blank"><i class="fas fa-search"></i> ANPE Bénin</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#">Contact </a></li>
+
+                    <!-- Ajout de l'option Espace Étudiant dans le menu -->
+                    <li class="student-portal"><a href="#"><i class="fas fa-user"></i> Espace Étudiant</a></li>
+                </ul>
+            </nav>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const nav = document.getElementById('nav');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navItems = document.querySelectorAll('#nav ul li');
+            let isMobile = window.innerWidth <= 768;
+
+            // Fonction pour gérer les sous-menus
+            function handleSubmenu(item) {
+                if (!isMobile) return;
+
+                const submenu = item.querySelector('ul');
+                if (!submenu) return;
+
+                const link = item.querySelector('> a');
+                const icon = link.querySelector('i');
+
+                // Toggle submenu
+                if (item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    if (icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Fermer les autres sous-menus
+                    navItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            const otherIcon = otherItem.querySelector('> a i');
+                            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    item.classList.add('active');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
+            }
+
+            // Gestionnaire d'événements pour le menu toggle
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                this.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    // Fermer tous les sous-menus
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        const submenuIcon = item.querySelector('> a i');
+                        if (submenuIcon) submenuIcon.style.transform = 'rotate(0deg)';
+                    });
+                }
+            });
+
+            // Gestionnaire d'événements pour les liens de menu
+            navItems.forEach(item => {
+                const link = item.querySelector('> a');
+                if (link) {
+                    link.addEventListener('click', function(e) {
+                        if (isMobile && item.querySelector('ul')) {
+                            e.preventDefault();
+                            handleSubmenu(item);
+                        }
+                    });
+                }
+            });
+
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', function(e) {
+                if (isMobile) {
+                    if (!e.target.closest('#nav') && !e.target.closest('.menu-toggle')) {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        
+                        // Fermer tous les sous-menus
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                            const submenuIcon = item.querySelector('> a i');
+                            if (submenuIcon) submenuIcon.style.transform = 'rotate(0deg)';
+                        });
+                    }
+                }
+            });
+
+            // Gestion du redimensionnement
+            window.addEventListener('resize', function() {
+                isMobile = window.innerWidth <= 768;
+                if (!isMobile) {
+                    nav.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    // Réinitialiser tous les sous-menus
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        const submenuIcon = item.querySelector('> a i');
+                        if (submenuIcon) submenuIcon.style.transform = '';
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Contenu de la page (exemple) -->
+    <!-- <main style="padding: 2rem; max-width: 1200px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-top: 2rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; letter-spacing: -0.025em;">Bienvenue sur le site de la FASEG</h1>
+        <p style="font-size: 1.125rem; color: #475569; line-height: 1.7;">Contenu de la page ici...</p>
+        <div style="height: 2000px; background: linear-gradient(to bottom, transparent, #f1f5f9); margin-top: 2rem; border-radius: 12px;"></div>
+    </main> -->
+</body>
+</html>
